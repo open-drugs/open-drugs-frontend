@@ -6,12 +6,16 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./pages/home/home-page.module').then((m) => m.HomePageModule),
   },
   {
-    path: 'drug/:id',
-    loadChildren: () => import('./pages/drug/drug-page.module').then((m) => m.DrugPageModule),
+    path: 'search',
+    loadChildren: () => import('./pages/search/search-page.module').then((m) => m.SearchPageModule),
   },
   {
     path: 'species/:id',
     loadChildren: () => import('./pages/species/species-page.module').then((m) => m.SpeciesPageModule),
+  },
+  {
+    path: 'summary',
+    loadChildren: () => import('./pages/summary/summary-page.module').then((m) => m.SummaryPageModule),
   },
   {
     path: '404',
@@ -20,6 +24,10 @@ export const APP_ROUTES: Routes = [
   {
     path: '**',
     redirectTo: '/404',
+  },
+  {
+    path: 'index',
+    redirectTo: '',
   },
 ];
 

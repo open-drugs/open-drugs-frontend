@@ -1,5 +1,5 @@
 export const environment = {
-  name: 'prod',
+  name: 'demo',
   production: true,
   apiMocks: {
     experimentsList: '../assets/mocks/experiments-list-mock.json',

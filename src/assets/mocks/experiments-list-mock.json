@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "id": 123,
+      "species": {
+        "id": 123,
+        "name": "mus musculus"
+      },
+      "strain": {
+        "id": 123,
+        "name": "UM-HET3"
+      },
+      "sex": "male",
+      "lifespan": {
+        "med": 781,
+        "avg": null,
+        "max": 985,
+        "unit": "days"
+      },
+      "doi": "10.1111/j.1474-9726.2007.00311.x",
+      "year": 2015,
+      "cohortSize": null,
+      "conditions": {
+        "feed": "Purina 5LG6",
+        "temperature": {
+          "from": 21,
+          "to": 24
+        },
+        "light": {
+          "light": 16,
+          "dark": 8
+        }
+      }
+    },
+    {
+      "id": 123,
+      "species": {
+        "id": 123,
+        "name": "mus musculus"
+      },
+      "strain": {
+        "id": 123,
+        "name": "UM-HET3"
+      },
+      "sex": "male",
+      "lifespan": {
+        "med": 851,
+        "avg": null,
+        "max": 1061,
+        "unit": "days"
+      },
+      "doi": "10.1093/gerona/glq178",
+      "year": 2015,
+      "cohortSize": null,
+      "conditions": {
+        "feed": "Purina 5LG6",
+        "temperature": {
+          "from": 21,
+          "to": 24
+        },
+        "light": {
+          "light": 16,
+          "dark": 8
+        }
+      }
+    }
+  ],
+  "options": {
+    "objTotal": 2,
+    "pagination": {
+      "page": 1,
+      "pageSize": 15,
+      "pagesTotal": 1
+    }
+  }
+}
