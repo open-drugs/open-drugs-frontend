@@ -1,12 +1,20 @@
-<mat-toolbar color="primary">
-  <a href="/"
-     class="logo">listcontrols</a>
+<mat-toolbar
+  class="header"
+  color="primary">
+  <div class="header__content">
+    <a href="/"
+       class="logo">listcontrols</a>
 
-  <ul class="menu">
-    <li>
-      <a routerLink="/">
-        Genomics
-      </a>
-    </li>
-  </ul>
+    <ul class="menu">
+      <li class="menu__item">
+        <a routerLink="/">
+          Genomics
+        </a>
+      </li>
+      <li class="menu__item">
+          Language
+      </li>
+    </ul>
+  </div>
 </mat-toolbar>
+

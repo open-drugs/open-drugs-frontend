@@ -1,1 +1,11 @@
-Main page
+<form class="search-form">
+  <mat-form-field appearance="outline"
+                  class="search-form__field">
+    <mat-label>Search drug or a list of drugs</mat-label>
+    <label>
+      <input matInput placeholder="Search drug or a list of drugs"
+             [(ngModel)]="search">
+    </label>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>

@@ -1,12 +1,13 @@
 // SIZES
-// Base
+// Base units
+$header-height: 60px;
 $ui-base-height: 26px;
 $padding-regular: 10px;
 
 // Fonts
 $font-size: 14px;
 $font-line-height: 1.42857;
-
+// Font weight
 $font-weight-thin: 100;
 $font-weight-light: 300;
 $font-weight-regular: 400;
@@ -15,6 +16,7 @@ $font-weight-bold: 700;
 $font-weight-black: 900;
 
 // COLORS
+// Palette
 $color-black: #000;
 $color-gray-800: #27292e;
 $color-gray-700: #808080;
@@ -30,8 +32,9 @@ $color-orange-500: #FFB334;
 $color-orange-200: #FFC769;
 $color-orange-100: #FFEDCF;
 $color-blue: #398DFF;
-
+// By function
 $color-general: $color-gray-700;
+$color-borders: $color-gray-600;
 
 // PATHS
 $path-images: '../images';

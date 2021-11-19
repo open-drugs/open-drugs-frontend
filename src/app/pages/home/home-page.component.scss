@@ -1,1 +1,14 @@
+.search-form {
+  $search-field-height: 40px;
 
+  &, &__field {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  &__field {
+    input {
+    }
+  }
+}

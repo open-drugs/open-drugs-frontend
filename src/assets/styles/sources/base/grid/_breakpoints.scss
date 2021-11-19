@@ -1,16 +1,16 @@
 /*
- * Миксины для медиа-запросов
+ * Mixins for media queries
  */
 
-// АДАПТИВНАЯ СЕТКА - МЕДИАЗАПРОСЫ
-$n: $max-scroll-width; // средняя ширина скролла
+// RESPONSIVE GRID - MEDIA QUERIES
+$n: $max-scroll-width; // average scrollbar width
 //$widescreen: $widescreen + $gutter + $n;
 //$desktop: $desktop + $gutter + $n;
 //$tablet: $tablet + $gutter + $n;
 //$phablet: $phablet + $gutter + $n;
 //$smartphone: $smartphone + $gutter + $n;
 
-/* Основные разрешения
+/* Basic resolutions
 ================================================*/
 
 /* Desktop - widescreen
@@ -43,7 +43,7 @@ $n: $max-scroll-width; // средняя ширина скролла
   }
 }
 
-/* Дополнительные разрешения
+/* Additional resolutions
 ================================================*/
 
 /* Mobile - phone only (Optional, 320px)
@@ -62,7 +62,7 @@ $n: $max-scroll-width; // средняя ширина скролла
   }
 }
 
-/* Брейкпоинты, объединяющие несколько разрешений
+/* Breakpoints for several resolutions at once
 ------------------------------------------------*/
 
 @mixin resolution_all-but-widescreen {
