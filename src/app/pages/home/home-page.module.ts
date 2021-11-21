@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page.component';
 import { RouterModule } from '@angular/router';
 import { HOME_ROUTES } from './home-page-routing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/vendors/material.module';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { MaterialModule } from '../../modules/vendors/material.module';
     RouterModule.forChild(HOME_ROUTES),
     FormsModule,
     MaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [],
 })
