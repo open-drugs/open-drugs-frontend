@@ -1,2 +1,10 @@
-<h1>Search page</h1>
-You search: {{ searchQuery }}
+<app-search-field (query)="search($event)"></app-search-field>
+
+<h1>{{ searchQuery }}</h1>
+
+<ul class="list">
+  <li *ngFor="let result of searchResults">
+    {{ result.species.name }} {{ result.strain.name }}
+  </li>
+</ul>
+

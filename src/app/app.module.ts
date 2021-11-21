@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES, ROUTER_OPTIONS } from './app-routing';
+import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderModule } from './components/header/header.module';
 import { ShowMoreButtonModule } from './components/show-more-button/show-more-button.module';
@@ -19,6 +20,7 @@ import { ShowMoreButtonModule } from './components/show-more-button/show-more-bu
     AppRoutingModule,
     RouterModule.forRoot(APP_ROUTES, ROUTER_OPTIONS),
     BrowserAnimationsModule,
+    HttpClientModule,
     HeaderModule,
     ShowMoreButtonModule,
   ],
