@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HOME_ROUTES } from './home-page-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/vendors/material.module';
+import { SearchFieldModule } from '../../components/search-field/search-field.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -14,6 +15,7 @@ import { MaterialModule } from '../../modules/vendors/material.module';
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
+    SearchFieldModule,
   ],
   exports: [],
 })

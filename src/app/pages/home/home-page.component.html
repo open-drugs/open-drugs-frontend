@@ -1,18 +1,2 @@
-<form [formGroup]="searchForm"
-      class="search-form">
-  <mat-form-field appearance="outline"
-                  class="search-form__field">
-    <mat-label>Search drug or a list of drugs</mat-label>
-    <label>
-      <input matInput
-             formControlName="searchField"
-             type="text"
-             placeholder="Search drug or a list of drugs"
-             (keyup.enter)="goToSearch(query)"
-             [(ngModel)]="query">
-    </label>
-    <mat-icon matSuffix
-              (click)="goToSearch(query)"
-    >search</mat-icon>
-  </mat-form-field>
-</form>
+<app-search-field (query)="goToSearch($event)"></app-search-field>
+

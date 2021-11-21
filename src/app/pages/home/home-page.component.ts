@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterService } from '../../core/services/router.service';
-import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: "app-home-page",
@@ -8,15 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent {
-  public searchForm: FormGroup;
-  public query : String ='';
-
-  constructor(
-    private routerService: RouterService,
-  ) {
-    this.searchForm = new FormGroup({
-      searchField: new FormControl(''),
-    });
+  constructor(private routerService: RouterService) {
   }
 
   public goToSearch ($query: string): void {
