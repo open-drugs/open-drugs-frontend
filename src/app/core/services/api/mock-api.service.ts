@@ -10,7 +10,7 @@ export class MockApiService {
   constructor(private http: HttpClient) {}
 
   public getMockResponse(): Observable<any> {
-    const mock = this.http.get(environment.mockJsonUrl);
+    const mock = this.http.get(environment.apiMocks.experimentsList);
     return mock ? mock : of({});
   }
 }
