@@ -1,0 +1,18 @@
+<form [formGroup]="searchForm"
+      class="search-form">
+
+  <label class="search-bar">
+      <input formControlName="searchField"
+             type="search"
+             placeholder="Search drug or a list of drugs"
+             class="search-bar__field"
+             (keyup.enter)="emitSearchQuery(searchQuery)"
+             [(ngModel)]="searchQuery">
+      <button matSuffix mat-icon-button aria-label="Search"
+              (click)="emitSearchQuery(searchQuery)"
+              class="search-bar__button">
+        <mat-icon [inline]="true"
+        >search</mat-icon>
+      </button>
+    </label>
+</form>

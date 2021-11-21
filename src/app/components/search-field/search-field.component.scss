@@ -1,0 +1,51 @@
+@import '../../../assets/styles/dependencies';
+
+.search-form {
+  $search-field-height: 50px;
+  $search-button-size: 40px;
+  $prefixed-selectors: (
+          '::placeholder',
+          '::-webkit-input-placeholder',
+          '::-moz-placeholder',
+          ':-moz-placeholder',
+          ':-ms-input-placeholder'
+  );
+
+  &,
+  .search-bar,
+  .search-bar__field {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  .search-bar {
+    &__field {
+      height: $search-field-height;
+      background: $color-white;
+      border: 1px solid $color-borders;
+      box-sizing: border-box;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.075);
+      border-radius: 5px;
+      padding: 0 #{$search-button-size + 10px} 0 15px;
+      font-size: $font-size + 2px;
+
+      @each $prefixed-selector in $prefixed-selectors {
+        &#{$prefixed-selector} {
+          color: $color-gray-700;
+        }
+      }
+    }
+
+    &__button {
+      color: $color-orange-500;
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      z-index: 1;
+      font-size: 30px;
+      transform: translateY(-50%);
+      margin-top: -2px; // correction
+    }
+  }
+}
