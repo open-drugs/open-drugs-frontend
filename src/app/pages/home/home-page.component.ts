@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { RouterService } from '../../core/services/router.service';
+import { SearchService } from '../../core/services/search.service';
 
 
 @Component({
@@ -8,10 +8,10 @@ import { RouterService } from '../../core/services/router.service';
   styleUrls: ["./home-page.component.scss"],
 })
 export class HomePageComponent {
-  constructor(private routerService: RouterService) {
+  constructor(private searchService: SearchService) {
   }
 
   public goToSearch ($query: string): void {
-    this.routerService.search($query)
+    this.searchService.search($query)
   }
 }

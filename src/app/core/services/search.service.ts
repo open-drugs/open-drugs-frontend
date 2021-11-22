@@ -5,16 +5,12 @@ import { RoutesEnum } from '../enums/routes.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class RouterService {
+export class SearchService {
   public searchQuery: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute) {
-  }
-
-  public navigateToSummaryPage(): void {
-    this.router.navigateByUrl(RoutesEnum.Summary);
   }
 
   public search(query: string): void {
