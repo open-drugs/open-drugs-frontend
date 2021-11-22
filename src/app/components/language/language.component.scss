@@ -1,0 +1,30 @@
+@import "../../../assets/styles/dependencies";
+
+:host {
+  display: inline-block;
+}
+
+$language-switcher-size: 20px;
+$background-color: white;
+$l: 'language-switcher';
+
+.language-switcher {
+  &__inner {
+    display: inline-block;
+    width: $language-switcher-size;
+    height: $language-switcher-size;
+    line-height: $language-switcher-size;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 3px;
+  }
+
+  &--dark {
+    .#{$l}__inner {
+      background-color: $background-color;
+    }
+  }
+}
+
