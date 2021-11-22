@@ -12,7 +12,7 @@ import { ApiResponse } from '../../core/models/api/response.model';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit{
-  public searchQuery: string;
+  public searchQuery: string = '';
   public searchResults: Experiment[] = []; // TODO: typing
   private subscription$ = new Subject();
 
@@ -20,11 +20,18 @@ export class SearchPageComponent implements OnInit{
     private routerService: RouterService,
     private mockService: MockApiService,
   ) {
+    this.updateSearchQuery();
+  }
+
+  private updateSearchQuery(): void {
     this.routerService.retrieveSearchQueryFromUrl();
     this.searchQuery = this.routerService.searchQuery;
   }
 
   public search ($query: string): void {
+    this.routerService.search($query);
+    this.searchQuery = $query;
+    console.log('query in a field ', this.searchQuery);
     this.mockService.getMockResponse()
       .pipe(takeUntil(this.subscription$))
       .subscribe(
@@ -33,6 +40,10 @@ export class SearchPageComponent implements OnInit{
         },
         (error) => (console.error(error))
       );
+  }
+
+  public updateSearch($query: string) : void {
+    this.search($query);
   }
 
   ngOnInit(): void {
