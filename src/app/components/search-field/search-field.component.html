@@ -5,15 +5,14 @@
   <label class="search-bar">
       <input formControlName="searchField"
              type="search"
-             placeholder="Search drug or a list of drugs"
+             [placeholder]="'search-placeholder' | translate "
              class="search-bar__field"
              (keyup.enter)="emitSearchQuery(searchQuery)"
              [(ngModel)]="searchQuery">
       <button matSuffix mat-icon-button aria-label="Search"
              type="submit"
               class="search-bar__button">
-        <mat-icon [inline]="true"
-        >search</mat-icon>
+        <mat-icon [inline]="true">search</mat-icon>
       </button>
     </label>
 </form>

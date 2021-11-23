@@ -17,8 +17,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SearchFieldComponent implements OnInit {
   public searchForm: FormGroup;
   public searchQuery: string = '';
+
   @Input() data: string;
   @Output() query: EventEmitter<string> = new EventEmitter;
+
 
   constructor(
   ) {

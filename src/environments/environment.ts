@@ -8,6 +8,7 @@ export const environment = {
   apiMocks: {
     experimentsList: '../assets/mocks/experiments-list-mock.json',
   },
+  languages: ['ru', 'en', 'zh'],
 };
 
 /*
