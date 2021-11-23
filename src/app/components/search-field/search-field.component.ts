@@ -8,8 +8,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SearchFieldComponent {
   public searchForm: FormGroup;
-  public searchQuery : string ='';
-  @Output() query: EventEmitter<string> = new EventEmitter;
+  public searchQuery: string = '';
+  @Output() query: EventEmitter<string> = new EventEmitter();
 
   constructor(
   ) {
@@ -18,7 +18,7 @@ export class SearchFieldComponent {
     });
   }
 
-  public emitSearchQuery ($event: string): void {
+  public emitSearchQuery($event: string): void {
     if ($event.length !== 0) {
       this.query.emit($event);
     }
