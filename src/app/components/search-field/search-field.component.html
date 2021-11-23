@@ -1,4 +1,5 @@
 <form [formGroup]="searchForm"
+      (submit)="emitSearchQuery(searchQuery)"
       class="search-form">
 
   <label class="search-bar">
@@ -9,7 +10,7 @@
              (keyup.enter)="emitSearchQuery(searchQuery)"
              [(ngModel)]="searchQuery">
       <button matSuffix mat-icon-button aria-label="Search"
-              (click)="emitSearchQuery(searchQuery)"
+             type="submit"
               class="search-bar__button">
         <mat-icon [inline]="true">search</mat-icon>
       </button>

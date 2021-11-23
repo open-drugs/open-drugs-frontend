@@ -5,7 +5,7 @@ import { RoutesEnum } from '../enums/routes.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class RouterService {
+export class SearchService {
   public searchQuery: string;
 
   constructor(
@@ -13,12 +13,9 @@ export class RouterService {
     private route: ActivatedRoute) {
   }
 
-  public navigateToSummaryPage(): void {
-    this.router.navigateByUrl(RoutesEnum.Summary);
-  }
-
   public search(query: string): void {
     // site.com/search?q=query
+    console.log('search: ', query);
     this.router.navigate([RoutesEnum.Search], { queryParams: { q: query } });
     this.searchQuery = query;
   }
@@ -27,6 +24,7 @@ export class RouterService {
     if (this.router.url.split('?')[0] === RoutesEnum.Search) {
       this.route.queryParams.subscribe(params => {
         this.searchQuery = params['q'];
+        console.log('retrieve: ', this.searchQuery);
       });
     }
   }
