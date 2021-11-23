@@ -13,11 +13,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeRu from '@angular/common/locales/ru';
-import localeZh from '@angular/common/locales/zh';
 
 registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeEn, 'en');
-registerLocaleData(localeZh, 'zh');
 
 /*Components*/
 import { SidebarComponent } from './components/sidebar/sidebar.component';

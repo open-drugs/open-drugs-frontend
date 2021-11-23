@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class SearchFieldComponent {
   public searchForm: FormGroup;
   public searchQuery: string = '';
-  @Output() query: EventEmitter<string> = new EventEmitter();
+  @Output() query: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
   ) {
