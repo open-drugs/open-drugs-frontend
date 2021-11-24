@@ -5,7 +5,7 @@
     <a href="/"
        class="logo">listcontrols</a>
 
-    <ul class="menu">
+    <ul class="menu" *ngIf="!isMobile">
       <li class="menu__item">
         <a routerLink="/">
           Genomics
