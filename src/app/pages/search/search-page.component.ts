@@ -23,12 +23,18 @@ export class SearchPageComponent implements OnInit{
     this.updateSearchQuery();
   }
 
+  ngOnInit(): void {
+    this.search(this.searchQuery);
+    this.searchService.getQueries()
+      .subscribe((queries) => console.log(queries));
+  }
+
   private updateSearchQuery(): void {
     this.searchService.retrieveSearchQueryFromUrl();
     this.searchQuery = this.searchService.searchQuery;
   }
 
-  public search ($query: string): void {
+  public search($query: string): void {
     this.searchService.search($query);
     this.searchQuery = $query;
     console.log('query in a field ', this.searchQuery);
@@ -42,11 +48,7 @@ export class SearchPageComponent implements OnInit{
       );
   }
 
-  public updateSearch($query: string) : void {
+  public updateSearch($query: string): void {
     this.search($query);
-  }
-
-  ngOnInit(): void {
-    this.search(this.searchQuery);
   }
 }
