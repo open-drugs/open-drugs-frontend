@@ -10,6 +10,7 @@ import { EMPTY, Observable, of } from 'rxjs';
 export class SearchService {
   public searchQuery: string;
   private allQueries: string[] = [];
+  private maxStoredQueries = 5;
 
   constructor(
     private router: Router,
@@ -42,7 +43,7 @@ export class SearchService {
       return;
     }
 
-    if (this.allQueries?.length > 5) {
+    if (this.allQueries?.length > this.maxStoredQueries) {
       this.allQueries.shift();
     }
 
