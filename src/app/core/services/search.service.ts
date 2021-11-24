@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoutesEnum } from '../enums/routes.enum';
+import { EMPTY, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class SearchService {
   public searchQuery: string;
+  private allQueries: string[] = [];
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute
+  ) {
+    this.allQueries = JSON.parse(localStorage.getItem('queries') as string) || [];
   }
 
   public search(query: string): void {
-    // site.com/search?q=query
-    console.log('search: ', query);
     this.router.navigate([RoutesEnum.Search], { queryParams: { q: query } });
     this.searchQuery = query;
+    this.storeQuery(query);
   }
 
   public retrieveSearchQueryFromUrl(): void {
@@ -27,5 +31,22 @@ export class SearchService {
         console.log('retrieve: ', this.searchQuery);
       });
     }
+  }
+
+  public getQueries(): Observable<string[]> {
+    return this.allQueries ? of(this.allQueries) : EMPTY;
+  }
+
+  private storeQuery(query: string): void {
+    if (this.allQueries?.includes(query)) {
+      return;
+    }
+
+    if (this.allQueries?.length > 5) {
+      this.allQueries.shift();
+    }
+
+    this.allQueries.push(query);
+    localStorage.setItem('queries', JSON.stringify(this.allQueries));
   }
 }
