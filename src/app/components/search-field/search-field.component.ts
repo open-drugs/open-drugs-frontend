@@ -19,11 +19,9 @@ export class SearchFieldComponent implements OnInit {
   public searchQuery: string = '';
 
   @Input() data: string;
-  @Output() query: EventEmitter<string> = new EventEmitter;
+  @Output() query: EventEmitter<string> = new EventEmitter();
 
-
-  constructor(
-  ) {
+  constructor() {
     this.searchForm = new FormGroup({
       searchField: new FormControl(null, [
         Validators.required,

@@ -17,10 +17,13 @@ import localeRu from '@angular/common/locales/ru';
 registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeEn, 'en');
 
+import { SentryModule } from '@pascaliske/ngx-sentry';
+
 /*Components*/
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderModule } from './components/header/header.module';
 import { ShowMoreButtonModule } from './components/show-more-button/show-more-button.module';
+import { environment } from '../environments/environment';
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http);
 
@@ -40,6 +43,18 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
         deps: [HttpClient],
       },
     }),
+    ...(environment.production ?
+      [
+        SentryModule.forRoot({
+          enabled: true,
+          sentry: {
+            dsn: environment.sentryUrl,
+          },
+          http: {
+            enabled: true,
+          },
+        })
+      ] : []),
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
@@ -53,4 +68,5 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
   exports: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
