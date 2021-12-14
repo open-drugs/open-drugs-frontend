@@ -6,17 +6,19 @@ import { HOME_ROUTES } from './home-page-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/vendors/material.module';
 import { SearchFieldModule } from '../../components/search-field/search-field.module';
+import {FilterPanelModule} from '../../components/filter-panel/filter-panel.module';
 
 @NgModule({
   declarations: [HomePageComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(HOME_ROUTES),
-    FormsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    SearchFieldModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(HOME_ROUTES),
+        FormsModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        SearchFieldModule,
+        FilterPanelModule,
+    ],
   exports: [],
 })
 export class HomePageModule {}
