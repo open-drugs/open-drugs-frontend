@@ -1,1 +1,42 @@
+@import '../../../assets/styles/dependencies';
+
+table {
+  width: 100%;
+  color: $color-black;
+  background: $color-white;
+  border: 1px solid $color-borders;
+  font-size: $font-size;
+  border-collapse: collapse;
+
+  thead th,
+  tfoot th {
+    color: $color-gray-500;
+    text-align: left;
+    background: $color-gray-100;
+  }
+
+  th,
+  td {
+    border: 1px solid $color-borders;
+    word-wrap: normal;
+
+    // Table cell min-width hack
+    &:after {
+      content: ' ';
+      display: block;
+      min-width: 5em;
+      height: 0;
+    }
+  }
+
+  th {
+    padding: .5em;
+  }
+
+  td {
+    padding: .2em .5em;
+  }
+}
+
+
 

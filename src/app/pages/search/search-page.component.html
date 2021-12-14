@@ -4,9 +4,30 @@
 
 <h1 class="__mt-10">{{ searchQuery }}</h1>
 
-<ul class="list">
-  <li *ngFor="let result of searchResults">
-    {{ result.species.name }} {{ result.strain.name }}
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <td>Species</td>
+      <td>Strain</td>
+      <td>Sex</td>
+      <td>Year</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let result of searchResults">
+      <td>
+        {{ result.species.name }}
+      </td>
+      <td>
+        {{ result.strain.name }}
+      </td>
+      <td>
+        {{ result.sex }}
+      </td>
+      <td>
+        {{ result.year }}
+      </td>
+    </tr>
+  </tbody>
+</table>
 
