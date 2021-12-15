@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FilterService } from '../../core/services/filter.service';
 
 @Component({
   selector: 'app-filter-panel',
@@ -7,25 +8,18 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./filter-panel.component.scss']
 })
 export class FilterPanelComponent implements OnInit {
-
   public filterForm: FormGroup;
 
-  constructor() {
-    this.initForm();
-  }
+  constructor(
+    private filterService: FilterService
+  ) {}
 
   ngOnInit(): void {
-    debugger;
-    this.filterForm.valueChanges.subscribe((form) => {
-      console.log(form);
-    })
+    this.filterForm = this.filterService.filterForm;
   }
 
-  initForm(): void {
-    this.filterForm = new FormGroup({
-      year: new FormControl('2021'),
-      sex: new FormControl(['all'])
-    });
+  public resetForm(): void {
+    this.filterForm.reset();
   }
 
 }
