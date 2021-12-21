@@ -86,7 +86,7 @@ ol {
 img,
 svg {
   display: inline-block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
   vertical-align: middle;
 }

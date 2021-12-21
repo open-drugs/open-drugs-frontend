@@ -10,7 +10,7 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./pages/search/search-page.module').then((m) => m.SearchPageModule),
   },
   {
-    path: 'species/:id',
+    path: 'species',
     loadChildren: () => import('./pages/species/species-page.module').then((m) => m.SpeciesPageModule),
   },
   {

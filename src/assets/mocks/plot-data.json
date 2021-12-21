@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "name": "Rapamycin 2005 clinical trials",
+      "mode": "lines+markers",
+      "coordinates": {
+        "x": [1, 2, 3, 4],
+        "y": [10, 15, 13, 17]
+      }
+    },
+    {
+      "name": "Male mice on rapamycin with calorie restriction diet",
+      "mode": "lines+markers",
+      "coordinates": {
+        "x": [1, 2, 3, 4],
+        "y": [12, 9, 15, 12]
+      }
+    }
+  ],
+  "options": {
+    "objTotal": 2,
+    "chartsCategory": "Mortality curves"
+  }
+}

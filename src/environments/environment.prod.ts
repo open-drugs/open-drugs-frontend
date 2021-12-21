@@ -3,6 +3,7 @@ export const environment = {
   production: true,
   apiMocks: {
     experimentsList: '../assets/mocks/experiments-list-mock.json',
+    plotData: '../assets/mocks/plot-data'
   },
   languages: ['ru', 'en', 'zh'],
 };
