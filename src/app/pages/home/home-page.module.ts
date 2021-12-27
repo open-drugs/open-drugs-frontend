@@ -19,4 +19,5 @@ import { SearchFieldModule } from '../../components/search-field/search-field.mo
   ],
   exports: [],
 })
-export class HomePageModule {}
+export class HomePageModule {
+}
