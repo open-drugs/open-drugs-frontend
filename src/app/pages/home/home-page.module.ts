@@ -6,6 +6,7 @@ import { HOME_ROUTES } from './home-page-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/vendors/material.module';
 import { SearchFieldModule } from '../../components/search-field/search-field.module';
+import { FeedTableModule } from '../../components/shared/table/feed-table.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -16,7 +17,9 @@ import { SearchFieldModule } from '../../components/search-field/search-field.mo
     MaterialModule,
     ReactiveFormsModule,
     SearchFieldModule,
+    FeedTableModule,
   ],
   exports: [],
 })
-export class HomePageModule {}
+export class HomePageModule {
+}

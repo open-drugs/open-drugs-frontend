@@ -1,0 +1,19 @@
+<section>
+  <table>
+    <thead>
+    <app-feed-table-header
+      (checkboxStates)="checkboxStatesChange($event)"></app-feed-table-header>
+    </thead>
+    <tbody>
+    <ng-container *ngIf="drugsData && drugsData.length">
+      <app-feed-table-row
+        *ngFor="let drug of drugsData"
+        [drug]="drug"
+        (drugId)="checkboxStatesChange($event)"></app-feed-table-row>
+    </ng-container>
+    </tbody>
+  </table>
+</section>
+
+<div *ngFor="let item of checkedDrugs">{{item.id}}</div>
+

@@ -28,5 +28,6 @@ export interface Experiment {
       light: number;
       dark: number;
     }
-  }
+  };
+  checked: boolean;
 }
