@@ -33,14 +33,14 @@
       }
     },
     {
-      "id": 123,
+      "id": 12,
       "species": {
         "id": 123,
         "name": "mus musculus"
       },
       "strain": {
         "id": 123,
-        "name": "UM-HET3"
+        "name": "UM-HET"
       },
       "sex": "male",
       "lifespan": {

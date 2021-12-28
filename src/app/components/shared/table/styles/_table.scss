@@ -1,0 +1,70 @@
+@import "../../../../../assets/styles/dependencies";
+
+@mixin table {
+  table {
+    width: 100%;
+  }
+}
+
+@mixin table-header {
+  .table-header {
+    @include table-cell;
+    .table-cell {
+      color: $color-gray-700;
+    }
+  }
+
+}
+
+@mixin table-body {
+  .table-body {
+    width: 100%;
+    display: table;
+    @include table-cell;
+    .table-cell {
+      font-weight: $font-weight-regular;
+      border-bottom: 1px solid $color-borders;
+    }
+  }
+}
+
+@mixin table-cell {
+  .table-cell {
+    font-size: $font-size;
+    font-weight: $font-weight-medium;
+    text-align: left;
+    vertical-align: middle;
+    padding: 8px 10px 10px 10px;
+    border-bottom: 2px solid $color-borders;
+
+    &--checkbox {
+      width: 4%;
+    }
+    &--temp {
+      width: 5%;
+    }
+
+    &--strain,
+    &--dosage {
+      width: 6%;
+    }
+
+    &--medium,
+    &--maximum,
+    &--average {
+      width: 8%;
+    }
+
+    &--drug,
+    &--sex {
+      width: 14%;
+    }
+
+    &--row-data,
+    &--group{
+      width: 10%;
+    }
+  }
+}
+
+

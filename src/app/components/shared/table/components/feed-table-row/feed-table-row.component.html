@@ -1,0 +1,43 @@
+<tr class="table-body">
+  <td class="table-cell table-cell--checkbox">
+    <div>
+      <mat-checkbox
+        [checked]="drug.checked"
+        (change)="checkboxChanges(drug.id)"
+        color="primary"></mat-checkbox>
+    </div>
+  </td>
+  <td class="table-cell table-cell--drug">
+    <div>{{drug.intervention.drugIntervention?.drug?.name || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--sex">
+    <div>{{drug.sex || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--strain">
+    <div>{{drug.strain.name || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--dosage">
+    <div>{{drug.intervention.drugIntervention?.dosage || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--medium">
+    <div>{{drug.lifespan.med || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--maximum">
+    <div>{{drug.lifespan.max || '\t&#8212;'}}</div>
+  </td>
+  <td class="table-cell table-cell--average">
+    <div>{{drug.lifespan.avg || '\t&#8212;'}}</div>
+    <div class="minus"></div>
+  </td>
+  <td class="table-cell table-cell--row-data">
+    <div>Row data</div>
+  </td>
+  <td class="table-cell table-cell--group">
+    <div>Group</div>
+  </td>
+  <td class="table-cell table-cell--temp">
+    <div *ngIf="drug.conditions.temperature?.from !== drug.conditions.temperature?.to"
+    >{{drug.conditions.temperature?.from}} -  {{drug.conditions.temperature?.to}} &#8451;</div>
+  </td>
+</tr>
+
