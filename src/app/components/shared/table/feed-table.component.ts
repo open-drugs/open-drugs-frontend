@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DrugTableService } from './services/drug-table.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Drug } from '../../../core/models/api/drug.model';
+import { Experiment } from '../../../core/models/api/experiment.model';
 
 @Component({
   selector: 'app-feed-table',
@@ -11,8 +11,8 @@ import { Drug } from '../../../core/models/api/drug.model';
   providers: [DrugTableService],
 })
 export class FeedTableComponent implements OnInit, OnDestroy {
-  @Input() drugsData: Drug[];
-  public checkedDrugs: Drug[] = [];
+  @Input() drugsData: Experiment[];
+  public checkedDrugs: Experiment[] = [];
 
   private unsubscribe$ = new Subject();
 

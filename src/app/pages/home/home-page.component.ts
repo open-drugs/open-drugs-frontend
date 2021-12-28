@@ -4,7 +4,7 @@ import { ExperimentApiService } from '../../core/services/api/experiment-api.ser
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { PageOptions } from '../../core/models/api/response.model';
-import { Drug } from '../../core/models/api/drug.model';
+import { Experiment } from '../../core/models/api/experiment.model';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { Drug } from '../../core/models/api/drug.model';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit, OnDestroy {
-  public drugsData: Drug[] = [];
+  public drugsData: Experiment[] = [];
   public drugsPageOptions: PageOptions;
 
   private unsubscribe$ = new Subject();

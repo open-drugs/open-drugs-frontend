@@ -37,9 +37,11 @@
     padding: 8px 10px 10px 10px;
     border-bottom: 2px solid $color-borders;
 
-    &--checkbox,
-    &--temp {
+    &--checkbox {
       width: 4%;
+    }
+    &--temp {
+      width: 5%;
     }
 
     &--strain,

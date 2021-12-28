@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Drug } from '../../../../../core/models/api/drug.model';
+import { Experiment } from '../../../../../core/models/api/experiment.model';
 
 @Component({
   selector: 'app-feed-table-row',
@@ -7,7 +7,7 @@ import { Drug } from '../../../../../core/models/api/drug.model';
   styleUrls: ['./feed-table-row.component.scss']
 })
 export class FeedTableRowComponent implements OnInit {
-  @Input() drug: Drug;
+  @Input() drug: Experiment;
 
   @Output() drugId: EventEmitter<number> = new EventEmitter<number>();
   constructor() { }

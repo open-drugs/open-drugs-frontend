@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Drug } from '../../../../core/models/api/drug.model';
+import { Experiment } from '../../../../core/models/api/experiment.model';
 
 @Injectable()
 export class DrugTableService {
-  private checkedDrugs = new BehaviorSubject<Drug[]>([]);
+  private checkedDrugs = new BehaviorSubject<Experiment[]>([]);
 
   constructor() { }
 
-  updateCheckedDrugs(drugs: Drug[], event: boolean | number): void {
+  updateCheckedDrugs(drugs: Experiment[], event: boolean | number): void {
     drugs.forEach((drug) => {
       if (typeof event === 'number') {
         if (drug.id === event) {
@@ -25,7 +25,7 @@ export class DrugTableService {
     }
   }
 
-  getCheckedDrugs(): Observable<Drug[]> {
+  getCheckedDrugs(): Observable<Experiment[]> {
     return this.checkedDrugs.asObservable();
   }
 }

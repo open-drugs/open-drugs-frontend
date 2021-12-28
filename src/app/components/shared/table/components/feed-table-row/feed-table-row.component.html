@@ -8,7 +8,7 @@
     </div>
   </td>
   <td class="table-cell table-cell--drug">
-    <div *ngIf="drug">Drug</div>
+    <div>{{drug.intervention.drugIntervention?.drug.name || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--sex">
     <div>{{drug.sex || '\t&#8212;'}}</div>
@@ -17,7 +17,7 @@
     <div>{{drug.strain.name || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--dosage">
-    <div>Dosage</div>
+    <div>{{drug.intervention.drugIntervention?.dosage || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--medium">
     <div>{{drug.lifespan.med || '\t&#8212;'}}</div>
@@ -36,7 +36,8 @@
     <div>Group</div>
   </td>
   <td class="table-cell table-cell--temp">
-    <div>27</div>
+    <div *ngIf="drug.conditions.temperature?.from !== drug.conditions.temperature?.to"
+    >{{drug.conditions.temperature?.from}} -  {{drug.conditions.temperature?.to}} &#8451;</div>
   </td>
 </tr>
 

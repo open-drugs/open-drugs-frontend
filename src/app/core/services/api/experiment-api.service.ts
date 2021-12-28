@@ -3,7 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../models/api/response.model';
-import { Drug } from '../../models/api/drug.model';
+import { Experiment } from '../../models/api/experiment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ export class ExperimentApiService {
     private http: HttpClient
   ) { }
 
-  getDrugs(): Observable<ApiResponse<Drug>> {
-    return this.http.get<ApiResponse<Drug>>(this.url + 'api/experiment/search');
+  getDrugs(): Observable<ApiResponse<Experiment>> {
+    return this.http.get<ApiResponse<Experiment>>(this.url + 'api/experiment/search');
   }
 
-  getDrugById(id: number): Observable<Drug> {
-    return this.http.get<Drug>(this.url + `api/experiment/${id}`);
+  getDrugById(id: number): Observable<Experiment> {
+    return this.http.get<Experiment>(this.url + `api/experiment/${id}`);
   }
 }
