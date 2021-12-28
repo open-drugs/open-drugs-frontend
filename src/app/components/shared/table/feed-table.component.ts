@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MockApiService } from '../../../core/services/api/mock-api.service';
-import { Experiment } from '../../../core/models/api/experiment.model';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DrugTableService } from './services/drug-table.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Drug } from '../../../core/models/api/drug.model';
 
 @Component({
   selector: 'app-feed-table',
@@ -12,34 +11,22 @@ import { takeUntil } from 'rxjs/operators';
   providers: [DrugTableService],
 })
 export class FeedTableComponent implements OnInit, OnDestroy {
-  public drugsData: Experiment[] = [];
-  public checkedDrugs: Experiment[] = [];
+  @Input() drugsData: Drug[];
+  public checkedDrugs: Drug[] = [];
 
   private unsubscribe$ = new Subject();
 
   constructor(
-    private mockApiService: MockApiService,
     private drugTableService: DrugTableService,
   ) {
   }
 
   ngOnInit(): void {
-    this.getDrugs();
     this.getCheckedDrugs();
   }
 
   public checkboxStatesChange(event: boolean | number): void {
     this.drugTableService.updateCheckedDrugs(this.drugsData, event);
-  }
-
-  private getDrugs(): void {
-    this.mockApiService.getMockResponse()
-      .pipe(
-        takeUntil(this.unsubscribe$),
-      )
-      .subscribe((data) => {
-        this.drugsData = data.items;
-      });
   }
 
   private getCheckedDrugs(): void {

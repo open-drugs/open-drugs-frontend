@@ -1,12 +1,14 @@
 export interface ApiResponse<T> {
   items: T[];
+  filters: any;
+  options: PageOptions;
+}
 
-  options: {
-    objTotal: number,
-    pagination: {
-      page: number,
-      pageSize: number,
-      pagesTotal: number
-    }
-  }
+export interface PageOptions {
+  objTotal: number;
+  pagination: {
+    page: number,
+    pageSize: number,
+    pagesTotal: number
+  };
 }
