@@ -4,11 +4,17 @@ import { SpeciesPageComponent } from './species-page.component';
 import { RouterModule } from '@angular/router';
 import { SPECIES_ROUTES } from './species-page-routing';
 
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyModule } from 'angular-plotly.js';
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
 @NgModule({
   declarations: [SpeciesPageComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(SPECIES_ROUTES),
+    PlotlyModule,
+    RouterModule.forChild(SPECIES_ROUTES)
   ],
   exports: [],
 })
