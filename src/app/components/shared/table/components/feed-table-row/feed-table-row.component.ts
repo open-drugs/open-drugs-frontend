@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Experiment } from '../../../../../core/models/api/experiment.model';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Drug } from '../../../../../core/models/api/drug.model';
 
 @Component({
   selector: 'app-feed-table-row',
@@ -8,7 +7,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./feed-table-row.component.scss']
 })
 export class FeedTableRowComponent implements OnInit {
-  @Input() drug: Experiment;
+  @Input() drug: Drug;
 
   @Output() drugId: EventEmitter<number> = new EventEmitter<number>();
   constructor() { }
