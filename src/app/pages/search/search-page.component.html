@@ -1,6 +1,11 @@
-<app-search-field (query)="updateSearch($event)"
-                 [data]="searchQuery"
+<app-search-field
+  (query)="updateSearch($event)"
+  [data]="searchQuery"
 ></app-search-field>
+
+<div>
+  <app-filter-panel></app-filter-panel>
+</div>
 
 <h1 class="__mt-10">{{ searchQuery }}</h1>
 

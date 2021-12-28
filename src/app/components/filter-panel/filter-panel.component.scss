@@ -1,0 +1,22 @@
+:host {
+
+}
+
+.filters-panel {
+  display: flex;
+  margin-top: 20px;
+
+  &__filter {
+    margin-right: 20px;
+  }
+}
+
+::ng-deep {
+  .mat-select-panel-wrap {
+    .mat-select-panel {
+      min-width: 100% !important;
+      margin-top: 10px;
+      margin-left: 5px;
+    }
+  }
+}
