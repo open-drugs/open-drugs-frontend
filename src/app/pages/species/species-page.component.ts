@@ -24,14 +24,16 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     legend: {},
     title: '',
     xaxis: {
-      rangemode: 'tozero',
       autorange: true,
       ticks: 'outside',
+      zeroline: false,
+      linewidth: 2,
     },
     yaxis: {
-      rangemode: 'tozero',
       autorange: true,
       ticks: 'outside',
+      zeroline: false,
+      linewidth: 2
     },
   };
 
