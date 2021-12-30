@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { DrugTableService } from './services/drug-table.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,7 +12,8 @@ import { Experiment } from '../../../core/models/api/experiment.model';
 })
 export class FeedTableComponent implements OnInit, OnDestroy {
   @Input() drugsData: Experiment[];
-  public checkedDrugs: Experiment[] = [];
+
+  @Output() checkedIds: EventEmitter<number[]> = new EventEmitter<number[]>();
 
   private unsubscribe$ = new Subject();
 
@@ -35,7 +36,8 @@ export class FeedTableComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribe$),
       )
       .subscribe((checkedDrugs) => {
-        this.checkedDrugs = checkedDrugs;
+        const checkedIds = checkedDrugs.map(drug => drug.id);
+        this.checkedIds.emit(checkedIds);
       });
   }
 

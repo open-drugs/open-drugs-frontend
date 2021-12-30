@@ -6,6 +6,7 @@ import { SPECIES_ROUTES } from './species-page-routing';
 
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
+import { FeedTableModule } from '../../components/shared/table/feed-table.module';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -14,8 +15,10 @@ PlotlyModule.plotlyjs = PlotlyJS;
   imports: [
     CommonModule,
     PlotlyModule,
-    RouterModule.forChild(SPECIES_ROUTES)
+    RouterModule.forChild(SPECIES_ROUTES),
+    FeedTableModule,
   ],
   exports: [],
 })
-export class SpeciesPageModule {}
+export class SpeciesPageModule {
+}

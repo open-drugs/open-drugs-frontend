@@ -1,7 +1,11 @@
 <plotly-plot
-  [data]="data"
+  [data]="plotData"
   [layout]="layout"
   [useResizeHandler]="true"
-  [style]="{position: 'relative', width: '80%', height: '100%'}">
+  [style]="{position: 'relative', width: '100%'}">
 </plotly-plot>
 
+<app-feed-table
+  [drugsData]="drugsData"
+  (checkedIds)="setPlotData($event)">
+</app-feed-table>
