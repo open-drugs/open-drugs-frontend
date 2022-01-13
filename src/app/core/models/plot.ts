@@ -1,15 +1,15 @@
-export interface PlotData {
-  items: PlotOptions[];
+export interface PlotData<T> {
+  items: T[];
   options: {
     objTotal: number;
     chartsCategory: string;
   };
 }
 
-interface PlotOptions {
-  name: string;
-  mode: string;
+export interface PlotOptions {
+  title: string;
   coordinates: {
+    mode: string;
     x: [];
     y: [];
   };
