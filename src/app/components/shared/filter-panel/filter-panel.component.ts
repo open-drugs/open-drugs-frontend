@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FilterService } from '../../core/services/filter.service';
+import { FilterService } from '../../../core/services/filter.service';
 
 @Component({
   selector: 'app-filter-panel',

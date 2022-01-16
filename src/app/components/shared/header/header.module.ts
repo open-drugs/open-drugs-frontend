@@ -5,7 +5,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { HeaderComponent } from './header.component';
-import { LanguageComponent } from '../language/language.component';
+import { LanguageComponent } from '../../language/language.component';
 
 @NgModule({
   declarations: [

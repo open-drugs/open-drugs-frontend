@@ -19,8 +19,8 @@ registerLocaleData(localeEn, 'en');
 
 /*Components*/
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderModule } from './components/header/header.module';
-import { ShowMoreButtonModule } from './components/show-more-button/show-more-button.module';
+import { HeaderModule } from './components/shared/header/header.module';
+import { ShowMoreButtonModule } from './components/shared/show-more-button/show-more-button.module';
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http);
 
