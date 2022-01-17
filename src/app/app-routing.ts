@@ -10,8 +10,8 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./pages/search/search-page.module').then((m) => m.SearchPageModule),
   },
   {
-    path: 'species/:id',
-    loadChildren: () => import('./pages/species/species-page.module').then((m) => m.SpeciesPageModule),
+    path: 'species',
+    loadChildren: () => import('./pages/all-species-page/all-species-page.module').then((m) => m.AllSpeciesPageModule)
   },
   {
     path: 'summary',

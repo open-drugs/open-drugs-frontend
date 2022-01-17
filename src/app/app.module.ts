@@ -18,16 +18,15 @@ registerLocaleData(localeRu, 'ru');
 registerLocaleData(localeEn, 'en');
 
 /*Components*/
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderModule } from './components/shared/header/header.module';
 import { ShowMoreButtonModule } from './components/shared/show-more-button/show-more-button.module';
+import { SidebarModule } from './components/shared/sidebar/sidebar.module';
 
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http);
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +44,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
     MaterialModule,
     HeaderModule,
     ShowMoreButtonModule,
+    SidebarModule,
   ],
   providers: [
     TranslateService,

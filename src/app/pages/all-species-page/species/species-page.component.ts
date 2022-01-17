@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PlotDataService } from '../../core/services/plot-data.service';
 import { takeUntil } from 'rxjs/operators';
-import { ExperimentApiService } from '../../core/services/api/experiment-api.service';
-import { Experiment } from '../../core/models/api/experiment.model';
-import { PageOptions } from '../../core/models/api/response.model';
 import { Subject } from 'rxjs';
-import { WindowWidth } from '../../core/utils/window-width';
-import { WindowWidthService } from '../../core/services/browser-view/window-width.service';
+import { WindowWidth } from '../../../core/utils/window-width';
+import { Experiment } from '../../../core/models/api/experiment.model';
+import { PageOptions } from '../../../core/models/api/response.model';
+import { WindowWidthService } from '../../../core/services/browser-view/window-width.service';
+import { ExperimentApiService } from '../../../core/services/api/experiment-api.service';
+import { PlotDataService } from '../../../core/services/plot-data.service';
 
 @Component({
   selector: 'app-species-page',
@@ -16,9 +16,9 @@ import { WindowWidthService } from '../../core/services/browser-view/window-widt
 export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestroy {
   public drugsData: Experiment[] = [];
   public drugsPageOptions: PageOptions;
-
+  public feedLayout: 'table' | 'cards';
   public plotData: any[] = [];
-  public layout = {
+  public plotLayout = {
     autosize: true,
     showlegend: true,
     legend: {},
@@ -51,25 +51,29 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     this.getDrugs();
 
     this.initWindowWidth(() => {
-      this.layout.legend = {
+      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
     });
 
     this.detectWindowWidth(() => {
-      this.layout.legend = {
+      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
     });
   }
 
   private getDrugs(): void {
+    console.log('getDrugs()');
     this.experimentApiService.getDrugs()
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       this.drugsData = res.items;
       this.drugsPageOptions = res.options;
+      console.log('drugsData', this.drugsData);
     });
   }
 
@@ -79,12 +83,11 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   }
 
   setPlotData(drugIds: number[]): void {
-
     if (drugIds.length) {
       this.plotDataService.getPlotDataById(drugIds)
         .pipe()
         .subscribe((data) => {
-          this.layout.title = data.options?.chartsCategory;
+          this.plotLayout.title = data.options?.chartsCategory;
 
           this.plotData = data.items.map((plot) => {
             return {
@@ -99,7 +102,5 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     } else {
       this.plotData = [];
     }
-
   }
-
 }

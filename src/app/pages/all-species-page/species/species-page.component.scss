@@ -1,0 +1,16 @@
+@import "../../../../assets/styles/dependencies";
+
+:host::ng-deep {
+  svg {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+.species__plot {
+  background: $color-white;
+  box-shadow: 0 3px 3px 0 rgba($color-black, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
