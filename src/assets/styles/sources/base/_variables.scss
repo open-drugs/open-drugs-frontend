@@ -17,27 +17,71 @@ $font-weight-black: 900;
 
 // COLORS
 // Palette
-$color-black: #000;
+$color-black: 000;
 $color-gray-800: #27292e;
 $color-gray-700: #808080;
 $color-gray-600: #c0c0c0;
 $color-gray-500: #c4c4c4;
 $color-gray-400: #D3D3D3;
 $color-gray-300: #ddd;
-$color-gray-200: #f1f1f1;
-$color-gray-100: #f9f9f9;
-$color-white: #ffffff;
+$color-gray-200: #FAFAFA;
+$color-gray-100: #F0F0F0;
+$color-white: #fff;
 $color-orange-900: #C88142;
 $color-orange-500: #FFB334;
 $color-orange-200: #FFC769;
 $color-orange-100: #FFEDCF;
-$color-blue: #398DFF;
+$color-blue-50: #dfe1f8;
+$color-blue-100: #c0c6f6;
+$color-blue-200: #9eabf4;
+$color-blue-300: #7a92f1;
+$color-blue-400: #4c79ee;
+$color-blue-500: #366EE5;
+$color-blue-600: #3062ce;
+$color-blue-700: #2957b8;
+$color-blue-800: #244ca2;
+$color-blue-900: #1e428e;
+
+// Material
+$palette-blue: (
+        50: $color-blue-50,
+        100: $color-blue-100,
+        200: $color-blue-200,
+        300: $color-blue-300,
+        400: $color-blue-400,
+        500: $color-blue-500,
+        600: $color-blue-600,
+        700: $color-blue-700,
+        800: $color-blue-800,
+        900: $color-blue-900,
+        A100: #82b1ff,
+        A200: #448aff,
+        A400: #2979ff,
+        A700: #2962ff,
+        contrast: (
+                50: $color-black,
+                100: $color-black,
+                200: $color-black,
+                300: $color-black,
+                400: $color-black,
+                500: $color-gray-600,
+                600: $color-gray-600,
+                700: $color-gray-600,
+                800: $color-gray-600,
+                900: $color-gray-600,
+                A100: $color-black,
+                A200: $color-gray-600,
+                A400: $color-gray-600,
+                A700: $color-gray-600,
+        )
+);
+
 // By function
-$color-general: $color-gray-700;
+$color-general: $color-blue-300;
 $color-borders: $color-gray-600;
 
-// PATHS
-$path-images: '../images';
+// Paths
+$path-images: '/assets/images';
 $path-fonts: '../fonts';
 
 // Fonts

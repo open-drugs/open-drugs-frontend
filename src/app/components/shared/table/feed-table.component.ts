@@ -12,6 +12,7 @@ import { Experiment } from '../../../core/models/api/experiment.model';
 })
 export class FeedTableComponent implements OnInit, OnDestroy {
   @Input() drugsData: Experiment[];
+  @Input() layout: 'table' | 'cards';
 
   @Output() checkedIds: EventEmitter<number[]> = new EventEmitter<number[]>();
 

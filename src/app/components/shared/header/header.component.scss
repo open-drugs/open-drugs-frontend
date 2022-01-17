@@ -2,7 +2,6 @@
 
 :host {
   width: 100%;
-  background-color: $color-general;
   position: fixed;
   z-index: z(header);
 }
@@ -19,6 +18,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    color: $color-white;
 
     .menu {
       width: 60%;
@@ -36,4 +36,11 @@
       }
     }
   }
+}
+
+.logo {
+  display: inline-block;
+  height: 50px;
+  width: 120px;
+  background: url('#{$path-images}/logo.svg') center / contain no-repeat;
 }

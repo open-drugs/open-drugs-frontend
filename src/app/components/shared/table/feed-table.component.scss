@@ -1,2 +1,8 @@
 @import "styles/table";
 @include table;
+
+:host {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}

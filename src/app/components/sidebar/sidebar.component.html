@@ -1,4 +1,7 @@
+<ng-content></ng-content>
+
 <h1>LISC</h1>
+
 <p>
   The idea is to host in a uniform format not only drugs but any sort
   of intervention/perturbation which affects not only life-span but also
@@ -8,13 +11,16 @@
 </p>
 <app-show-more-button>Read the full article</app-show-more-button>
 
-<ng-content></ng-content>
-
 <ul class="menu">
   <li class="menu__item">
     <a [routerLink]="'/summary'"
        routerLinkActive="current"
     >Summary</a>
+  </li>
+  <li class="menu__item">
+    <a [routerLink]="'/download'"
+       routerLinkActive="current"
+    >Download</a>
   </li>
 </ul>
 

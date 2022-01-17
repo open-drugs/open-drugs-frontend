@@ -21,7 +21,9 @@
   <tbody>
     <tr *ngFor="let result of searchResults">
       <td>
-        {{ result.species.name }}
+        <a [routerLink]="['/species', result.id]">
+          {{ result.species.name }}
+        </a>
       </td>
       <td>
         {{ result.strain.name }}

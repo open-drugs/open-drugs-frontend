@@ -12,20 +12,23 @@ h1 {
 }
 
 .menu {
+  display: block;
   margin-top: 30px;
 
   &__item {
+    display: list-item;
     font-size: $font-size + 1px;
+    border-top: 1px solid $color-borders;
 
     & > a {
       display: inline-block;
       width: 100%;
-      padding: 8px 20px;
+      padding: 8px 0;
       color: $color-gray-700;
     }
-  }
 
-  .menu__item + .menu__item {
-    border-top: 1px solid $color-borders;
+    &:last-child {
+      border-bottom: 1px solid $color-borders;
+    }
   }
 }

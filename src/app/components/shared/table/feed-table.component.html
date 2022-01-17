@@ -1,17 +1,25 @@
-<section>
-  <table>
-    <thead>
-    <app-feed-table-header
-      (checkboxStates)="checkboxStatesChange($event)"></app-feed-table-header>
-    </thead>
-    <tbody>
-    <ng-container *ngIf="drugsData && drugsData.length">
+<table *ngIf="layout === 'table'">
+  <thead>
+  <app-feed-table-header
+    (checkboxStates)="checkboxStatesChange($event)"></app-feed-table-header>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="drugsData && drugsData.length">
+    <app-feed-table-row
+      *ngFor="let drug of drugsData"
+      [drug]="drug"
+      (drugId)="checkboxStatesChange($event)"></app-feed-table-row>
+  </ng-container>
+  </tbody>
+</table>
+
+<section *ngIf="layout === 'cards'">
+  <ng-container *ngIf="drugsData && drugsData.length">
+    <mat-card *ngFor="let drug of drugsData"
+              class="__mt-20">
       <app-feed-table-row
-        *ngFor="let drug of drugsData"
         [drug]="drug"
         (drugId)="checkboxStatesChange($event)"></app-feed-table-row>
-    </ng-container>
-    </tbody>
-  </table>
+    </mat-card>
+  </ng-container>
 </section>
-
