@@ -1,6 +1,6 @@
 @import '../assets/styles/dependencies';
 
-.grid-container {
+::ng-deep .grid-container {
   padding: #{$header-height + 50px} 20px 0 20px;
   display: grid;
   grid-gap: 10px;
@@ -15,7 +15,7 @@
     grid-template-areas: "sidebar" "content";
   }
 
-  &__sidebar {
+  ::ng-deep .grid-container__sidebar {
     grid-area: sidebar;
 
     @include resolution_desktop-and-up {
@@ -23,7 +23,7 @@
     }
   }
 
-  &__content {
+  ::ng-deep .grid-container__content {
     grid-area: content;
   }
 }

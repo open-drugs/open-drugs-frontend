@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../modules/vendors/material.module';
 import { SearchFieldModule } from '../../components/shared/search-field/search-field.module';
 import { FeedTableModule } from '../../components/shared/table/feed-table.module';
+import { SidebarModule } from '../../components/shared/sidebar/sidebar.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -18,6 +19,7 @@ import { FeedTableModule } from '../../components/shared/table/feed-table.module
     ReactiveFormsModule,
     SearchFieldModule,
     FeedTableModule,
+    SidebarModule,
   ],
   exports: [],
 })

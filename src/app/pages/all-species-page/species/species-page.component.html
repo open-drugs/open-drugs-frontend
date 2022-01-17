@@ -1,14 +1,23 @@
-<div class="species__plot">
-  <plotly-plot
-    [data]="plotData"
-    [layout]="plotLayout"
-    [useResizeHandler]="true"
-    [style]="{position: 'relative', width: '100%'}">
-  </plotly-plot>
+<div class="grid-container">
+  <div class="grid-container__sidebar">
+    <p>filters</p>
+  </div>
+  <div class="grid-container__content">
+    <div class="species__plot">
+      <plotly-plot
+        [data]="plotData"
+        [layout]="plotLayout"
+        [useResizeHandler]="true"
+        [style]="{position: 'relative', width: '100%'}">
+      </plotly-plot>
+    </div>
+    <app-feed-table
+      [drugsData]="drugsData"
+      [layout]="feedLayout"
+      (checkedIds)="setPlotData($event)">
+    </app-feed-table>
+  </div>
 </div>
 
-<app-feed-table
-  [drugsData]="drugsData"
-  [layout]="feedLayout"
-  (checkedIds)="setPlotData($event)">
-</app-feed-table>
+
+

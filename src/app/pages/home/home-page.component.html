@@ -1,7 +1,13 @@
-<app-search-field (query)="goToSearch($event)"></app-search-field>
+<div class="grid-container">
+  <div class="grid-container__sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="grid-container__content">
+  <app-search-field (query)="goToSearch($event)"></app-search-field>
 
-<app-feed-table
-  [drugsData]="drugsData"
-  [layout]="feedLayout">
-</app-feed-table>
-
+  <app-feed-table
+    [drugsData]="drugsData"
+    [layout]="feedLayout">
+  </app-feed-table>
+  </div>
+</div>
