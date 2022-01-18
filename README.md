@@ -1,31 +1,46 @@
-# listcontrols-frontend
+# open-drugs-frontend
 
-Lifespan Interventions Control Groups frontend on Angular
+Frontend for age-related drugs experiments database.
+
+## Start locally
+
+```
+npm i
+```
+```
+npm run start
+```
+
+[https://localhost:4200/](https://localhost:4200/)
 
 ---
+## Build for different environments
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+Developers stand test build: `npm run build-dev`
 
-## Development server
+Demo stand build: `npm run build-demo`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Production AOT build: `npm run build-prod`
 
-## Code scaffolding
+## Setup configs
+### IDEA
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Configuration files package folder path:
 
-## Build
+```
+node_modules/@coding-for-science/frontend-shared-configs/
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+#### .editorconfig 
+1. Go to *Preferences > Editor > Code Style > EditorConfig > Export > EditorConfig File*.
+2. Choose: `node_modules/@coding-for-science/frontend-shared-configs/.editorconfig`
+3. Check the **Enable EditorConfig** support checkbox.
 
-## Running unit tests
+#### ESLint
+1. Go to *Preferences > Languages and Frameworks > JavaScript > Code Quality Tools > ESLint*.
+3. Path to config: `node_modules/@coding-for-science/frontend-shared-configs/.editorconfig`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+#### SassLint
+1. Go to *Preferences > Plugins*, install SassLint plugin.
+2. Go to preferences, SassLint plugin page and check the **Enable plugin**.
+3. Path to config: `node_modules/@coding-for-science/frontend-shared-configs/.sasslint`
