@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search.service';
-import { MockApiService } from '../../core/services/api/mock-api.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Experiment } from '../../core/models/api/experiment.model';
-import { ApiResponse } from '../../core/models/api/response.model';
 import { FilterService } from '../../core/services/filter.service';
 import { FilterParams } from '../../core/models/filter-params';
+import { ExperimentApiService } from '../../core/services/api/experiment-api.service';
 
 @Component({
   selector: 'app-search-page',
@@ -23,7 +22,7 @@ export class SearchPageComponent implements OnInit {
   constructor(
     private searchService: SearchService,
     private filterService: FilterService,
-    private mockService: MockApiService,
+    private experimentApiService: ExperimentApiService
   ) {
     this.updateSearchQuery();
   }
@@ -49,10 +48,10 @@ export class SearchPageComponent implements OnInit {
     this.searchService.search($query);
     this.searchQuery = $query;
     console.log('query in a field ', this.searchQuery);
-    this.mockService.getMockResponse()
+    this.experimentApiService.getDrugs()
       .pipe(takeUntil(this.subscription$))
       .subscribe(
-        (response: ApiResponse<Experiment>) => {
+        (response) => {
           this.searchResults = response?.items;
           this.drugListForFiltering = response?.items;
         },
@@ -76,9 +75,7 @@ export class SearchPageComponent implements OnInit {
       const searchedText = [
         drug.year,
         drug.sex,
-      ]
-        .join(' ')
-        .toLowerCase();
+      ];
 
       return arrayOfValues.every(param => searchedText.includes(param as string));
     });
