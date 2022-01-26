@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SEARCH_ROUTES } from './search-page-routing';
 import { SearchFieldModule } from '../../components/shared/search-field/search-field.module';
 import {FilterPanelModule} from '../../components/shared/filter-panel/filter-panel.module';
+import {AppSliderModule} from '../../components/ui-components/components/slider/app-slider.module';
 
 @NgModule({
   declarations: [SearchPageComponent],
@@ -13,6 +14,7 @@ import {FilterPanelModule} from '../../components/shared/filter-panel/filter-pan
         RouterModule.forChild(SEARCH_ROUTES),
         SearchFieldModule,
         FilterPanelModule,
+        AppSliderModule,
     ],
   exports: [],
 })

@@ -1,0 +1,45 @@
+@import '../../styles/app-slider';
+@import '../../styles/ripple';
+
+.slider-wrapper {
+  @include slider-wrapper;
+}
+
+.slider-container {
+  @include slider-core;
+}
+
+.slider__line {
+  @include slider-line;
+
+  &--selected {
+    @include slider-line-bar;
+  }
+}
+
+
+.slider__button {
+  @include slider-button;
+
+
+  .button__visible-part {
+    @include slider-button-visible-part;
+  }
+
+  &:hover {
+    .button__visible-part {
+      @include slider-button-hover;
+    }
+  }
+
+  &.__pressed {
+    @include slider-button-scale;
+
+    .button__visible-part {
+      @include slider-button-pressed;
+      @include slider-button-visible-part-active;
+    }
+  }
+}
+
+
