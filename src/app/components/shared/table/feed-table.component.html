@@ -1,7 +1,8 @@
 <table *ngIf="layout === 'table'">
   <thead>
   <app-feed-table-header
-    (checkboxStates)="checkboxStatesChange($event)"></app-feed-table-header>
+    [selectAll]="selectAll"
+    (selectAllChange)="checkboxStatesChange($event)"></app-feed-table-header>
   </thead>
   <tbody>
   <ng-container *ngIf="drugsData && drugsData.length">
