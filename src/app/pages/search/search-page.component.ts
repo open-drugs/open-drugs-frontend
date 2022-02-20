@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Experiment } from '../../core/models/api/experiment.model';
 import { FilterService } from '../../core/services/filter.service';
 import { FilterParams } from '../../core/models/filter-params';
-import { ExperimentApiService } from '../../core/services/api/experiment-api.service';
+import { MockApiService } from '../../core/services/api/mock-api.service';
 
 @Component({
   selector: 'app-search-page',
@@ -14,15 +13,15 @@ import { ExperimentApiService } from '../../core/services/api/experiment-api.ser
 })
 export class SearchPageComponent implements OnInit {
   public searchQuery: string = '';
-  public searchResults: Experiment[] = []; // TODO: typing
+  public searchResults: any[] = []; // TODO: typing
 
-  private drugListForFiltering: Experiment[] = [];
+  private searchListForFiltering: any[] = []; // TODO: typing
   private subscription$ = new Subject();
 
   constructor(
     private searchService: SearchService,
     private filterService: FilterService,
-    private experimentApiService: ExperimentApiService
+    private mockApiService: MockApiService
   ) {
     this.updateSearchQuery();
   }
@@ -47,13 +46,12 @@ export class SearchPageComponent implements OnInit {
   public search($query: string): void {
     this.searchService.search($query);
     this.searchQuery = $query;
-    console.log('query in a field ', this.searchQuery);
-    this.experimentApiService.getDrugs()
+    this.mockApiService.getSpecies()
       .pipe(takeUntil(this.subscription$))
       .subscribe(
         (response) => {
           this.searchResults = response?.items;
-          this.drugListForFiltering = response?.items;
+          this.searchListForFiltering = response?.items;
         },
         (error) => (console.error(error)),
       );
@@ -67,14 +65,14 @@ export class SearchPageComponent implements OnInit {
     const arrayOfValues = Object.values(filterParams).filter(res => res);
 
     if (!arrayOfValues.length) {
-      this.searchResults = [...this.drugListForFiltering];
+      this.searchResults = [...this.searchListForFiltering];
       return;
     }
 
-    this.searchResults = this.drugListForFiltering?.filter((drug) => {
+    this.searchResults = this.searchListForFiltering?.filter((result) => {
       const searchedText = [
-        drug.year,
-        drug.sex,
+        result.year,
+        result.sex,
       ];
 
       return arrayOfValues.every(param => searchedText.includes(param as string));

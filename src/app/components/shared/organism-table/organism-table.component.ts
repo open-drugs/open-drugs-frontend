@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { DrugTableService } from './services/drug-table.service';
+import { OrganismTableService } from './services/organism-table.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Experiment } from '../../../core/models/api/experiment.model';
 
 @Component({
-  selector: 'app-feed-table',
-  templateUrl: './feed-table.component.html',
-  styleUrls: ['./feed-table.component.scss'],
-  providers: [DrugTableService],
+  selector: 'app-organism-table',
+  templateUrl: './organism-table.component.html',
+  styleUrls: ['./organism-table.component.scss'],
+  providers: [OrganismTableService],
 })
-export class FeedTableComponent implements OnInit, OnDestroy {
+export class OrganismTableComponent implements OnInit, OnDestroy {
   @Input() drugsData: Experiment[];
   @Input() layout: 'table' | 'cards' = 'table';
 
@@ -19,7 +19,7 @@ export class FeedTableComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
 
   constructor(
-    private drugTableService: DrugTableService,
+    private drugTableService: OrganismTableService,
   ) {
   }
 

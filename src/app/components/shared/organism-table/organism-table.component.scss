@@ -1,8 +1,12 @@
-@import "styles/table";
-@include table;
+@import "styles/variables";
 
 :host {
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
+
+.table {
+  width: 100%;
+}
+

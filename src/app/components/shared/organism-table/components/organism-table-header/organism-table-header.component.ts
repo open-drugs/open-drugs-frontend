@@ -1,15 +1,15 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { DrugTableService } from '../../services/drug-table.service';
+import { OrganismTableService } from '../../services/organism-table.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-feed-table-header',
-  templateUrl: './feed-table-header.component.html',
-  styleUrls: ['./feed-table-header.component.scss'],
+  selector: 'app-organism-table-header',
+  templateUrl: './organism-table-header.component.html',
+  styleUrls: ['./organism-table-header.component.scss'],
 })
-export class FeedTableHeaderComponent implements OnInit, OnDestroy {
+export class OrganismTableHeaderComponent implements OnInit, OnDestroy {
   public selectAll = false;
 
   private unsubscribe$ = new Subject();
@@ -17,7 +17,7 @@ export class FeedTableHeaderComponent implements OnInit, OnDestroy {
   @Output() checkboxStates: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
-    private drugTableService: DrugTableService,
+    private drugTableService: OrganismTableService,
   ) {
   }
 

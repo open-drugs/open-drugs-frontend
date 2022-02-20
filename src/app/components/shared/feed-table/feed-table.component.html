@@ -1,0 +1,23 @@
+<table *ngIf="layout === 'table'"
+       class="table">
+  <thead>
+  <app-feed-table-header></app-feed-table-header>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="data && data.length">
+    <app-feed-table-row
+      *ngFor="let row of data"
+      [data]="row"></app-feed-table-row>
+  </ng-container>
+  </tbody>
+</table>
+
+<section *ngIf="layout === 'cards'">
+  <ng-container *ngIf="data && data.length">
+    <mat-card *ngFor="let row of data"
+              class="card">
+      <app-feed-table-row
+        [data]="row"></app-feed-table-row>
+    </mat-card>
+  </ng-container>
+</section>
