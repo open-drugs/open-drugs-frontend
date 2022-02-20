@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SEARCH_ROUTES } from './search-page-routing';
 import { SearchFieldModule } from '../../components/shared/search-field/search-field.module';
 import {FilterPanelModule} from '../../components/shared/filter-panel/filter-panel.module';
+import { FeedTableModule } from '../../components/shared/feed-table/feed-table.module';
 import {AppSliderModule} from '../../components/ui-components/components/slider/app-slider.module';
 
 @NgModule({
@@ -15,6 +16,7 @@ import {AppSliderModule} from '../../components/ui-components/components/slider/
         SearchFieldModule,
         FilterPanelModule,
         AppSliderModule,
+        FeedTableModule,
     ],
   exports: [],
 })

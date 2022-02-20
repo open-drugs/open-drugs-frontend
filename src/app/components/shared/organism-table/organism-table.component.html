@@ -1,0 +1,28 @@
+<table *ngIf="layout === 'table'"
+       class="table">
+  <thead>
+  <app-organism-table-header
+    [selectAll]="selectAll"
+    (selectAllChange)="checkboxStatesChange($event)"
+  ></app-organism-table-header>
+  </thead>
+  <tbody>
+  <ng-container *ngIf="drugsData && drugsData.length">
+    <app-organism-table-row
+      *ngFor="let drug of drugsData"
+      [drug]="drug"
+      (drugId)="checkboxStatesChange($event)"></app-organism-table-row>
+  </ng-container>
+  </tbody>
+</table>
+
+<section *ngIf="layout === 'cards'">
+  <ng-container *ngIf="drugsData && drugsData.length">
+    <mat-card *ngFor="let drug of drugsData"
+              class="card">
+      <app-organism-table-row
+        [drug]="drug"
+        (drugId)="checkboxStatesChange($event)"></app-organism-table-row>
+    </mat-card>
+  </ng-container>
+</section>

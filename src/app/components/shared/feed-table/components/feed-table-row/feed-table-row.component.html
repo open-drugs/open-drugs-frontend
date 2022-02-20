@@ -1,0 +1,17 @@
+<tr>
+  <td class="table-cell">
+    <a [routerLink]="['/species', data.id]"
+       class="link">
+      {{ data.name }}
+    </a>
+  </td>
+  <td class="table-cell">
+    {{ data.strain.name }}
+  </td>
+  <td class="table-cell">
+    {{ data.sex }}
+  </td>
+  <td class="table-cell">
+    {{ data.year }}
+  </td>
+</tr>

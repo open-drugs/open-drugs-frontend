@@ -1,4 +1,9 @@
 @import '../../../assets/styles/dependencies';
+@import '../../../assets/styles/sources/project/mixins/link';
+
+.link {
+  @include link;
+}
 
 table {
   width: 100%;

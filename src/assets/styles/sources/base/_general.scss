@@ -6,6 +6,8 @@ body {
   display: table;
   height: 100%;
   width: 100%;
+  min-width: $smartphone + ($gutter * 2);
+  padding: ($header-height + $gutter) $gutter 0 $gutter;
   position: absolute;
   top: 0;
   bottom: 0;

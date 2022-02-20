@@ -9,40 +9,16 @@
     ></app-slider>
   </div>
   <div class="grid-container__content">
-  <app-search-field
-    (query)="updateSearch($event)"
-    [data]="searchQuery"
-  ></app-search-field>
+    <app-search-field
+      (query)="updateSearch($event)"
+      [data]="searchQuery"
+    ></app-search-field>
 
-  <h1 class="__mt-10">{{ searchQuery }}</h1>
-    <table>
-      <thead>
-        <tr>
-          <td>Species</td>
-          <td>Strain</td>
-          <td>Sex</td>
-          <td>Year</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let result of searchResults">
-          <td>
-            <a [routerLink]="['/species', result.id]">
-              {{ result.species.name }}
-            </a>
-          </td>
-          <td>
-            {{ result.strain.name }}
-          </td>
-          <td>
-            {{ result.sex }}
-          </td>
-          <td>
-            {{ result.year }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <h1 class="__mt-10">{{ searchQuery }}</h1>
+
+    <app-feed-table
+      [data]="searchResults"
+    ></app-feed-table>
   </div>
 </div>
 

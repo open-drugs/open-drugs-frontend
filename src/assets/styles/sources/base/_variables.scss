@@ -2,7 +2,13 @@
 // Base units
 $header-height: 60px;
 $ui-base-height: 26px;
-$padding-regular: 10px;
+
+$padding-s: 5px;
+$padding-m: 10px;
+$padding-l: 20px;
+
+$border-radius-s: 5px;
+$border-radius-m: 10px;
 
 // Fonts
 $font-size: 14px;
@@ -31,9 +37,9 @@ $color-orange-900: #C88142;
 $color-orange-500: #FFB334;
 $color-orange-200: #FFC769;
 $color-orange-100: #FFEDCF;
-$color-blue-50: #dfe1f8;
-$color-blue-100: #c0c6f6;
-$color-blue-200: #9eabf4;
+$color-blue-50: #f2f7fd;
+$color-blue-100: #dce9fa;
+$color-blue-200: #9eb9f4;
 $color-blue-300: #7a92f1;
 $color-blue-400: #4c79ee;
 $color-blue-500: #366EE5;

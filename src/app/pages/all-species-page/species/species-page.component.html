@@ -11,11 +11,12 @@
         [style]="{position: 'relative', width: '100%'}">
       </plotly-plot>
     </div>
-    <app-feed-table
+
+    <app-organism-table
       [drugsData]="drugsData"
       [layout]="feedLayout"
       (checkedIds)="setPlotData($event)">
-    </app-feed-table>
+    </app-organism-table>
   </div>
 </div>
 

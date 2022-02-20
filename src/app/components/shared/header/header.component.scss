@@ -1,12 +1,15 @@
 @import '../../../../assets/styles/dependencies';
 
 :host {
-  width: 100%;
   position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: z(header);
 }
 
-.header {
+.header { // mat-toolbar
+  padding: 0 $gutter;
   &, &__content {
     width: 100%;
     position: relative;
@@ -41,6 +44,6 @@
 .logo {
   display: inline-block;
   height: 50px;
-  width: 120px;
+  width: 90px;
   background: url('#{$path-images}/logo.svg') center / contain no-repeat;
 }

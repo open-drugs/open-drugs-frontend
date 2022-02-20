@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "name": "mus musculus",
+      "strain": {
+        "id": 123,
+        "name": "C57BL/6"
+      },
+      "sex": "male",
+      "year": 2020
+    },
+    {
+      "id": 1,
+      "name": "mus musculus",
+      "strain": {
+        "id": 124,
+        "name": "UM-HET3"
+      },
+      "sex": "female",
+      "year": 2020
+    }
+  ],
+  "options": {
+    "objTotal": 2,
+    "pagination": {
+      "page": 1,
+      "pageSize": 15,
+      "pagesTotal": 1
+    }
+  }
+}

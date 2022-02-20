@@ -7,6 +7,7 @@ import { PageOptions } from '../../core/models/api/response.model';
 import { Experiment } from '../../core/models/api/experiment.model';
 import { WindowWidth } from '../../core/utils/window-width';
 import { WindowWidthService } from '../../core/services/browser-view/window-width.service';
+import { MockApiService } from '../../core/services/api/mock-api.service';
 
 
 @Component({
@@ -15,21 +16,21 @@ import { WindowWidthService } from '../../core/services/browser-view/window-widt
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent extends WindowWidth implements OnInit, OnDestroy {
-  public drugsData: Experiment[] = [];
-  public drugsPageOptions: PageOptions;
+  public feedData: any = []; // TODO: typing
+  public pageOptions: PageOptions;
   public feedLayout: 'table' | 'cards';
   private unsubscribe$ = new Subject();
 
   constructor(
     public windowWidthService: WindowWidthService,
     private searchService: SearchService,
-    private experimentApiService: ExperimentApiService,
+    private mockApiService: MockApiService,
   ) {
     super(windowWidthService);
   }
 
   ngOnInit(): void {
-    this.getDrugs();
+    this.getSpecies();
 
     this.initWindowWidth(() => {
       this.feedLayout = this.isMobile ? 'cards' : 'table';
@@ -49,13 +50,15 @@ export class HomePageComponent extends WindowWidth implements OnInit, OnDestroy 
     this.searchService.search($query);
   }
 
-  private getDrugs(): void {
-    this.experimentApiService.getDrugs()
+  private getSpecies(): void {
+    console.log('getSpecies');
+    this.mockApiService.getSpecies()
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
-        this.drugsData = res.items;
-        this.drugsPageOptions = res.options;
+        this.feedData = res.items;
+        console.log(this.feedData);
+        this.pageOptions = res.options;
     });
   }
 }

@@ -5,13 +5,15 @@ import { FeedTableRowComponent } from './components/feed-table-row/feed-table-ro
 import { TranslateModule } from '@ngx-translate/core';
 import { FeedTableComponent } from './feed-table.component';
 import { MaterialModule } from '../../../modules/vendors/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [FeedTableComponent, FeedTableHeaderComponent, FeedTableRowComponent],
   imports: [
     CommonModule,
     TranslateModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule,
   ],
   exports: [
     FeedTableComponent,

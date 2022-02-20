@@ -2,6 +2,13 @@
 
 Frontend for age-related drugs experiments database.
 
+## Before you start
+
+```
+npm install -g @angular/cli
+```
+For more information please visit [https://angular.io/guide/setup-local](Angular official guide)
+
 ## Start locally
 
 ```
