@@ -1,37 +1,35 @@
+type float = number;
+
+type Item = {
+  id: number;
+  name: string;
+}
+
 export interface Experiment {
   id: number;
-  species: {
-    id: number;
-    name: string;
-  };
+  species: Item;
   strain: {
     id: number;
     name: string;
   };
   sex: string;
   lifespan: {
-    med: number;
-    avg: number;
-    max: number;
+    med: float;
+    avg: float;
+    max: float;
     unit: string
   };
   doi: string;
   year: number;
   cohortSize: number;
   pmid: number;
-  interventionType: {
-    id: number,
-    name: string
-  };
+  interventionType: Item;
   survivalDataAvailable: boolean;
   rawDataAvailable: boolean;
   checked: boolean;
   intervention: {
     drugIntervention: {
-      drug: {
-        id: number,
-        name: string
-      },
+      drug: Item,
       dosage: string,
       delivery: {
         option: string,
