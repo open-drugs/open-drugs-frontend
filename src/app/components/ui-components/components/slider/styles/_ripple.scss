@@ -1,0 +1,54 @@
+@mixin ripple($diameter, $is-container, $hover-color: false, $active-color: false) {
+  .ripple {
+    flex: 0 0 $diameter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $diameter;
+    width: $diameter;
+    min-width: $diameter; // fix
+    border-radius: 50%;
+    transition: opacity ease-in .15s;
+    background-color: transparent;
+    cursor: pointer;
+
+    @if ($is-container == 'container') {
+      position: relative;
+    }
+  }
+
+  @if $hover-color {
+    &:hover, // TODO: add .no-touch parent
+    &.__focused {
+      @if ($is-container == 'container') {
+        opacity: .75;
+      } @else if('usual') {
+        ::ng-deep .ripple {
+          opacity: .75;
+        }
+      }
+
+      ::ng-deep .ripple {
+        background-color: $hover-color;
+      }
+    }
+  }
+
+  @if $active-color {
+    // Зажата мышь или тап и удержание
+    &:active,
+    &.__pressed {
+      @if ($is-container == 'container') {
+        opacity: .85;
+      } @else if('usual') {
+        ::ng-deep .ripple {
+          opacity: .85;
+        }
+      }
+
+      ::ng-deep .ripple {
+        background-color: $active-color;
+      }
+    }
+  }
+}

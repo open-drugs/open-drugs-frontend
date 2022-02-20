@@ -1,0 +1,40 @@
+@import './variables';
+
+@mixin slider-button {
+  position: absolute;
+  display: block;
+  width: $slider-button-ripple-size;
+  height: $slider-button-ripple-size;
+  top: -$slider-button-ripple-size/2 + $slider-line-height/2;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform .15s ease-in;
+}
+
+@mixin slider-button-visible-part {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  width: $slider-button-visible-size;
+  height: $slider-button-visible-size;
+  background-color: $slider-button-color;
+  border-radius: 50%;
+}
+
+@mixin slider-button-hover {
+  background-color: $slider-button-hover-color;
+}
+
+@mixin slider-button-pressed {
+  background-color: $slider-button-pressed-color;
+}
+
+@mixin slider-button-visible-part-active {
+  transform: translate(-50%, -50%) translateZ(0);
+}
+
+@mixin slider-button-scale {
+  transform: scale(1.3, 1.3);
+}

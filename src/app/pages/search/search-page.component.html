@@ -1,6 +1,12 @@
 <div class="grid-container">
   <div class="grid-container__sidebar">
     <app-filter-panel></app-filter-panel>
+    <app-slider
+      [maxValue]="100"
+      [minValue]="0"
+      [maxCurrentValue]="50"
+      [minCurrentValue]="30"
+    ></app-slider>
   </div>
   <div class="grid-container__content">
     <app-search-field
@@ -15,3 +21,4 @@
     ></app-feed-table>
   </div>
 </div>
+

@@ -1,0 +1,14 @@
+@import './variables';
+
+@mixin slider-line {
+  width: 100%;
+  height: $slider-line-height;
+  background-color: $slider-line-color;
+}
+
+@mixin slider-line-bar {
+  position: absolute;
+  top: 0;
+  height: $slider-line-bar-height;
+  background-color: $slider-line-bar-color;
+}
