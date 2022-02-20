@@ -13,9 +13,8 @@ import { Experiment } from '../../../core/models/api/experiment.model';
 export class OrganismTableComponent implements OnInit, OnDestroy {
   @Input() drugsData: Experiment[];
   @Input() layout: 'table' | 'cards' = 'table';
-
   @Output() checkedIds: EventEmitter<number[]> = new EventEmitter<number[]>();
-
+  public selectAll = false;
   private unsubscribe$ = new Subject();
 
   constructor(
@@ -38,6 +37,7 @@ export class OrganismTableComponent implements OnInit, OnDestroy {
       )
       .subscribe((checkedDrugs) => {
         const checkedIds = checkedDrugs.map(drug => drug.id);
+        this.selectAll = checkedDrugs.length > 0 && checkedDrugs.length === this.drugsData.length;
         this.checkedIds.emit(checkedIds);
       });
   }

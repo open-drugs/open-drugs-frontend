@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { OrganismTableService } from '../../services/organism-table.service';
 import { Subject } from 'rxjs';
@@ -10,8 +10,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./organism-table-header.component.scss'],
 })
 export class OrganismTableHeaderComponent implements OnInit, OnDestroy {
-  public selectAll = false;
-
+  @Input() selectAll: boolean;
+  @Output() selectAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   private unsubscribe$ = new Subject();
 
   @Output() checkboxStates: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -27,7 +27,7 @@ export class OrganismTableHeaderComponent implements OnInit, OnDestroy {
 
   public checkboxChanges(event: MatCheckboxChange): void {
     this.selectAll = event.checked;
-    this.checkboxStates.emit(this.selectAll);
+    this.selectAllChange.emit(this.selectAll);
   }
 
   private getCheckedDrugs(): void {

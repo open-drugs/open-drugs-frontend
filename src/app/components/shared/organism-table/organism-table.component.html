@@ -2,7 +2,9 @@
        class="table">
   <thead>
   <app-organism-table-header
-    (checkboxStates)="checkboxStatesChange($event)"></app-organism-table-header>
+    [selectAll]="selectAll"
+    (selectAllChange)="checkboxStatesChange($event)"
+  ></app-organism-table-header>
   </thead>
   <tbody>
   <ng-container *ngIf="drugsData && drugsData.length">
