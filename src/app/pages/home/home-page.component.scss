@@ -1,0 +1,15 @@
+@import '../../../assets/styles/dependencies';
+@import '../../../assets/styles/sources/project/mixins/hint';
+
+.grid-container {
+  align-items: center;
+}
+
+.feed,
+.hint {
+  margin-top: 20px;
+}
+
+.hint {
+  @include hint;
+}

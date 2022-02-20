@@ -1,3 +1,38 @@
 /* Grid mixins */
 @import "grid/variables";
 @import "grid/breakpoints";
+
+.grid-container {
+  box-sizing: border-box;
+  display: grid;
+  grid-gap: $gutter;
+  height: 100%;
+  min-width: $smartphone;
+  max-width: $widescreen;
+  margin-right: auto;
+  margin-left: auto;
+
+  .grid-container__sidebar {
+    grid-area: sidebar;
+  }
+
+  .grid-container__content {
+    grid-area: content;
+
+    &--full-width {
+      grid-column-start: 1;
+    }
+  }
+
+  @include resolution_desktop-and-up {
+    grid-template-columns: $sidebar-width auto;
+    grid-template-areas: "sidebar content";
+  }
+
+  @include resolution_smartphone-and-tablet {
+    grid-template-columns: 100%;
+    grid-template-areas:
+    "sidebar"
+    "content";
+  }
+}

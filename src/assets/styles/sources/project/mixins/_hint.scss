@@ -1,0 +1,22 @@
+@mixin hint() {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: $padding-l;
+  background: $color-blue-50;
+  border-radius: $border-radius-s;
+  font-size: 12px;
+
+  &__content {
+    flex: 1 1;
+    padding-right: $padding-l;
+  }
+
+  &__button {
+    width: 160px;
+  }
+}

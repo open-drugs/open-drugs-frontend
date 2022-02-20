@@ -1,0 +1,11 @@
+@mixin link() {
+  cursor: pointer;
+  position: relative;
+  color: $color-blue-400;
+  font-weight: $font-weight-medium;
+
+  &:hover,
+  &:active {
+    color: $color-blue-500;
+  }
+}
