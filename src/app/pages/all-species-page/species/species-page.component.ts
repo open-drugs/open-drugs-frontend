@@ -1,12 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowWidth } from '../../../core/utils/window-width';
 import { Experiment } from '../../../core/models/api/experiment.model';
 import { PageOptions } from '../../../core/models/api/response.model';
-import { WindowWidthService } from '../../../core/services/browser-view/window-width.service';
+import { WindowWidthService } from '../../../core/services/browser/window-width.service';
 import { ExperimentApiService } from '../../../core/services/api/experiment-api.service';
-import { PlotDataService } from '../../../core/services/plot-data.service';
+import { PlotDataService } from '../../../core/services/api/plot-data.service';
+import { Filters } from '../../../core/models/api/filters.model';
+import { FilterParams } from '../../../core/models/filter-params';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-species-page',
@@ -15,6 +18,7 @@ import { PlotDataService } from '../../../core/services/plot-data.service';
 })
 export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestroy {
   public drugsData: Experiment[] = [];
+  public filtersOptions: Filters;
   public drugsPageOptions: PageOptions;
   public feedLayout: 'table' | 'cards';
   public plotData: any[] = [];
@@ -50,6 +54,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   ngOnInit(): void {
     this.getDrugs();
 
+
     this.initWindowWidth(() => {
       this.feedLayout = this.isMobile ? 'cards' : 'table';
       this.plotLayout.legend = {
@@ -65,15 +70,20 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
   }
 
-  private getDrugs(): void {
+  public getDrugs(param: {name: string, value: any} | null = null): void {
+    let queryParams = '';
+    if (param) {
+      queryParams = `${param.name}=${param.value}`;
+    }
     console.log('getDrugs()');
-    this.experimentApiService.getDrugs()
+    console.log('params: ', param);
+    this.experimentApiService.getDrugs(`?${queryParams}`)
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       this.drugsData = res.items;
-      this.drugsPageOptions = res.options;
-      console.log('drugsData', this.drugsData);
+      this.filtersOptions = res.filters;
+      this.drugsPageOptions = res.options; // TODO: pagination
     });
   }
 

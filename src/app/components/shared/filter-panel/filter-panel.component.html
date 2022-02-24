@@ -1,21 +1,15 @@
-<div class="filters-panel" [formGroup]="filterForm">
-
+<form class="filters-panel" [formGroup]="filtersForm">
    <div class="filters-panel__filter">
      <mat-form-field appearance="fill">
-       <mat-label>Year</mat-label>
-       <input formControlName="year" matInput placeholder="Year" type="number">
-     </mat-form-field>
-   </div>
-
-   <div class="filters-panel__filter">
-     <mat-form-field appearance="fill">
-       <mat-label>Sex</mat-label>
-       <mat-select formControlName="sex" disableOptionCentering >
-         <mat-option value="">All</mat-option>
-         <mat-option value="male">Male</mat-option>
-         <mat-option value="female">Female</mat-option>
+       <mat-label>Intervention type</mat-label>
+       <mat-select formControlName="interventionTypeSelect"
+                   multiple="true"
+                   [(ngModel)]="predefinedInterventionTypes"
+                   [compareWith]="compareSelectValues"
+                   (selectionChange)="apply('byInterventionType', $event)">
+         <mat-option *ngFor="let i of interventionTypes"
+                     [value]="i.id">{{ i.name }}</mat-option>
        </mat-select>
      </mat-form-field>
    </div>
-
-</div>
+</form>

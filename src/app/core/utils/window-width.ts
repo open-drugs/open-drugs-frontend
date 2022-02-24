@@ -1,7 +1,7 @@
 import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { WindowWidthService } from '../services/browser-view/window-width.service';
+import { WindowWidthService } from '../services/browser/window-width.service';
 
 @Directive()
 export abstract class WindowWidth implements OnDestroy{

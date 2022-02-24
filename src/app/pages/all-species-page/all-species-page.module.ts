@@ -7,6 +7,7 @@ import { SPECIES_ROUTES } from './all-species-page-routing';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { OrganismTableModule } from '../../components/shared/organism-table/organism-table.module';
+import { FilterPanelModule } from '../../components/shared/filter-panel/filter-panel.module';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -17,6 +18,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     PlotlyModule,
     RouterModule.forChild(SPECIES_ROUTES),
     OrganismTableModule,
+    FilterPanelModule,
   ],
   exports: [],
 })

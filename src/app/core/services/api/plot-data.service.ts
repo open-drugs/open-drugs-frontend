@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { PlotData, PlotOptions } from '../models/plot';
+import { PlotData, PlotOptions } from '../../models/plot';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

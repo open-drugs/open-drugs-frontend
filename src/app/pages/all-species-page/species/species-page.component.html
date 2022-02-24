@@ -1,6 +1,10 @@
 <div class="grid-container">
   <div class="grid-container__sidebar">
-    <p>filters</p>
+    <app-filter-panel
+      *ngIf="filtersOptions"
+      [filters]="filtersOptions"
+      (filterApplied)="getDrugs($event)"
+    ></app-filter-panel>
   </div>
   <div class="grid-container__content">
     <div class="species__plot">

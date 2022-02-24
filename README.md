@@ -32,6 +32,12 @@ Production AOT build: `npm run build-prod`
 ## Setup configs
 ### IDEA
 
+Add to package.json
+
+```
+"@coding-for-science/frontend-shared-configs": "^0.1.0",
+```
+
 Configuration files package folder path:
 
 ```
@@ -45,7 +51,7 @@ node_modules/@coding-for-science/frontend-shared-configs/
 
 #### ESLint
 1. Go to *Preferences > Languages and Frameworks > JavaScript > Code Quality Tools > ESLint*.
-3. Path to config: `node_modules/@coding-for-science/frontend-shared-configs/.editorconfig`
+3. Path to config: `node_modules/@coding-for-science/frontend-shared-configs/.eslintrc.json`
 
 #### SassLint
 1. Go to *Preferences > Plugins*, install SassLint plugin.
