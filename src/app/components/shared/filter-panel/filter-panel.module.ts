@@ -5,8 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../modules/vendors/material.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-
-
 @NgModule({
   declarations: [FilterPanelComponent],
   exports: [

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowWidth } from '../../../core/utils/window-width';
@@ -12,6 +12,7 @@ import { FilterParams } from '../../../core/models/filter-params';
 import { MatSelectChange } from '@angular/material/select';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-species-page',
   templateUrl: './species-page.component.html',
   styleUrls: ['./species-page.component.scss'],
@@ -47,12 +48,13 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     public windowWidthService: WindowWidthService,
     private experimentApiService: ExperimentApiService,
     private plotDataService: PlotDataService,
+    private readonly cdRef: ChangeDetectorRef,
   ) {
     super(windowWidthService);
   }
 
   ngOnInit(): void {
-    this.getDrugs();
+    this.getExperimentsData();
 
 
     this.initWindowWidth(() => {
@@ -60,6 +62,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
+      this.cdRef.markForCheck();
     });
 
     this.detectWindowWidth(() => {
@@ -67,24 +70,28 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
+      this.cdRef.markForCheck();
     });
   }
 
-  public getDrugs(param: {name: string, value: any} | null = null): void {
+  public getExperimentsData(param: {name: string, value: any} | null = null): void {
     let queryParams = '';
+    // TODO: now only a single parameter at time
     if (param) {
-      queryParams = `${param.name}=${param.value}`;
+      queryParams = `?${param.name}=${param.value}`;
     }
-    console.log('getDrugs()');
+    console.log('getExperiments()');
     console.log('params: ', param);
-    this.experimentApiService.getDrugs(`?${queryParams}`)
+    this.experimentApiService.getExperiments(queryParams)
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       this.drugsData = res.items;
       this.filtersOptions = res.filters;
       this.drugsPageOptions = res.options; // TODO: pagination
+      this.cdRef.markForCheck();
     });
+    // TODO: Error handling
   }
 
   ngOnDestroy(): void {
@@ -112,5 +119,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     } else {
       this.plotData = [];
     }
+    this.cdRef.markForCheck();
   }
 }

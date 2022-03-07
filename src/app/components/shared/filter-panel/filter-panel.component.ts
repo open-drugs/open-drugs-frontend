@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { FilterTypes } from '../../../core/models/filter-params';
@@ -33,15 +33,13 @@ export class FilterPanelComponent
   }
 
   ngOnInit(): void {
-    console.log('interventionTypes', this.interventionTypes);
     // FILTERS
     // Age-related processes
     this.interventionTypes = this.getEntitiesList('byInterventionType');
 
-    this.filterParametersService.retrievequeryParamFromUrl('byInterventionType')
+    this.filterParametersService.retrieveQueryParamFromUrl('byInterventionType')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        console.log('interventionTypes res', res);
         this.predefinedInterventionTypes = res;
       });
 
@@ -57,7 +55,7 @@ export class FilterPanelComponent
 
   public compareSelectValues(value1: any | any[], value2: any): boolean {
     if (value1 && value2) {
-      return value1.id === value2.id;
+      return value1 === value2;
     }
     return false;
   }
@@ -104,13 +102,12 @@ export class FilterPanelComponent
    */
 
   apply(key: FilterTypes, $event: MatSelectChange) {
-    this.filterParametersService.storeQuery(`${key}=${$event.value.toString().split(',')}`)
-    this.filterApplied.emit({name: key, value: $event.value});
-  }
+    let value = $event.value;
+    if (Array.isArray($event.value)) {
+      value = $event.value[0];
+    }
 
-  // this.filtersForm.valueChanges
-  //   .pipe(takeUntil(this.subscription$))
-  //   .subscribe((filterParams: FilterParams) => {
-  //     this.updateDrugListByFilterParams(filterParams);
-  //   });
+    this.filterParametersService.applyQueryParams(key, value);
+    this.filterApplied.emit({name: key, value: value});
+  }
 }
