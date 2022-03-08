@@ -26,6 +26,7 @@ export class FilterParametersService {
 
   public applyQueryParams(query: string, value: any | any[]): void {
     const val = Array.isArray(value)? value : value.split(',');
+    console.log(val);
     this.router.navigate(
       [this.router.url],
       {

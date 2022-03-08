@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { FilterTypes } from '../../../core/models/filter-params';
-import { Filters } from '../../../core/models/api/filters.model';
+import { Filters, Intervention } from '../../../core/models/api/filters.model';
 import { Subject } from 'rxjs';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
 import { takeUntil } from 'rxjs/operators';
@@ -12,11 +12,19 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './filter-panel.component.html',
   styleUrls: ['./filter-panel.component.scss']
 })
-export class FilterPanelComponent
-{
+export class FilterPanelComponent {
   public filtersForm: FormGroup;
-  public predefinedInterventionTypes = [];
+  // FILTERS
+  // Intervention types
+  public selectedInterventionType = '';
   public interventionTypes: any[] | any | null;
+  // Intervention type - interventions
+  public selectedInterventions = [];
+  public interventions: any[] | any | null;
+  // Species
+  public selectedSpecies: any;
+  public species: any[] | any | null;
+
   private subscription$ = new Subject;
 
   @Input() filters: Filters;
@@ -26,23 +34,32 @@ export class FilterPanelComponent
     private filterParametersService: FilterParametersService,
   ) {
     this.filtersForm = new FormGroup({
-      interventionTypeSelect: new FormControl([[], [Validators.minLength(1)]]),
-      // expressionChangeSelect: new FormControl([[], null]),
-      // diseasesSelect: new FormControl([[], [Validators.minLength(1)]]),
+      interventionTypeSelect: new FormControl(['', Validators.minLength(1)]),
+      interventionsSelect: new FormControl([[], null]),
+      speciesSelect: new FormControl(['', null]),
     });
   }
 
   ngOnInit(): void {
     // FILTERS
-    // Age-related processes
-    this.interventionTypes = this.getEntitiesList('byInterventionType');
-
-    this.filterParametersService.retrieveQueryParamFromUrl('byInterventionType')
+    // Intervention types
+    this.interventionTypes = this.getEntitiesList('interventionType');
+    this.filterParametersService.retrieveQueryParamFromUrl('interventionType')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        this.predefinedInterventionTypes = res;
+        this.selectedInterventionType = res;
       });
 
+    // Interventions
+    this.pickInterventions();
+
+    // Species
+    this.species = this.getEntitiesList('species');
+    this.filterParametersService.retrieveQueryParamFromUrl('species')
+      .pipe(takeUntil(this.subscription$))
+      .subscribe((res) => {
+        this.selectedSpecies = res;
+      });
   }
 
   ngOnDestroy(): void {
@@ -65,29 +82,8 @@ export class FilterPanelComponent
    */
 
   private getEntitiesList(key: FilterTypes): any[] | any | null {
-    if (this.filters) {
-      switch (key) {
-        case 'byInterventionType':
-          return this.filters.interventionType;
-        case 'byIntervention':
-          return this.filters.intervention;
-        case 'bySpecies':
-          return this.filters.species;
-        case 'byStrain':
-          return this.filters.strain;
-        case 'byAvgLifespanChangePercent':
-          return this.filters.avgLifespanChangePercent;
-        case 'byMaxLifespanChangePercent':
-          return this.filters.maxLifespanChangePercent;
-        case 'byAvgLifespan':
-          return this.filters.avgLifespan;
-        case 'byMaxLifespan':
-          return this.filters.maxLifespan;
-        case 'byYear':
-          return this.filters.year;
-        default:
-          return null;
-      }
+    if (this.filters && this.filters[key]) {
+      return this.filters[key];
     }
 
     return null;
@@ -101,7 +97,7 @@ export class FilterPanelComponent
    * Apply filter values
    */
 
-  apply(key: FilterTypes, $event: MatSelectChange) {
+  apply(key: FilterTypes, $event: MatSelectChange, callback?: Function) {
     let value = $event.value;
     if (Array.isArray($event.value)) {
       value = $event.value[0];
@@ -109,5 +105,18 @@ export class FilterPanelComponent
 
     this.filterParametersService.applyQueryParams(key, value);
     this.filterApplied.emit({name: key, value: value});
+    if (callback) {
+      callback.call(this);
+    }
+  }
+
+  public pickInterventions() {
+    const interventions = this.getEntitiesList('intervention');
+    this.interventions = interventions.filter((intervention: Intervention) => intervention?.type == this.selectedInterventionType);
+    this.filterParametersService.retrieveQueryParamFromUrl('intervention')
+      .pipe(takeUntil(this.subscription$))
+      .subscribe((res) => {
+        this.selectedInterventions = res;
+      });
   }
 }

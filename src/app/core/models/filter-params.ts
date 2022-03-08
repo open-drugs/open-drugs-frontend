@@ -1,22 +1,22 @@
 export interface FilterParams {
-  byInterventionType: any[];
-  byIntervention: any[];
-  bySpecies: any[];
-  byStrain: any[];
-  byAvgLifespanChangePercent: any; // TODO: typing
-  byMaxLifespanChangePercent: any;
-  byAvgLifespan: any;
-  byMaxLifespan: any;
-  byYear: number[];
+  interventionType: any[];
+  intervention: any[];
+  species: any[];
+  strain: any[];
+  avgLifespanChangePercent: any; // TODO: typing
+  maxLifespanChangePercent: any;
+  avgLifespan: any;
+  maxLifespan: any;
+  year: number[];
 }
 
 export type FilterTypes =
-  | 'byInterventionType'
-  | 'byIntervention'
-  | 'bySpecies'
-  | 'byStrain'
-  | 'byAvgLifespanChangePercent'
-  | 'byMaxLifespanChangePercent'
-  | 'byAvgLifespan'
-  | 'byMaxLifespan'
-  | 'byYear';
+  | 'interventionType'
+  | 'intervention'
+  | 'species'
+  | 'strain'
+  | 'avgLifespanChangePercent'
+  | 'maxLifespanChangePercent'
+  | 'avgLifespan'
+  | 'maxLifespan'
+  | 'year';
