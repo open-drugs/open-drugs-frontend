@@ -38,7 +38,7 @@ export class FilterParametersService {
   }
 
   public getFiltersState(): Observable<FilterParamsModel> {
-    return of(this.appliedFiltersState);
+    return of({...this.appliedFiltersState});
   }
 
   public applyQueryParams(param: string, value: any | any[]): void {

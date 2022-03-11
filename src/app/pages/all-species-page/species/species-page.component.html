@@ -3,7 +3,7 @@
     <app-filter-panel
       *ngIf="filtersOptions"
       [filters]="filtersOptions"
-      (filterApplied)="getExperimentsData()"
+      (filterApplied)="retrieveAndSetParams(getExperimentsData)"
     ></app-filter-panel>
   </div>
   <div class="grid-container__content">

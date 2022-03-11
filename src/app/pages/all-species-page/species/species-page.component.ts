@@ -84,11 +84,12 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       const params = res;
       console.log(params);
       for (const key in params) {
-        if (params[key as FilterTypes] === undefined) {
-          delete params[key as FilterTypes];
-        }
-        if (params[key as FilterTypes] && params[key as FilterTypes].length === 0) {
-          delete params[key as FilterTypes];
+        if (params.hasOwnProperty(key)) {
+          if (params[key as FilterTypes]?.length === 0) {
+            delete params[key as FilterTypes];
+          } else if (params[key as FilterTypes] === undefined) {
+            delete params[key as FilterTypes];
+          }
         }
       }
 
@@ -102,8 +103,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   }
 
   public getExperimentsData(): void {
-    const params = this.filterParams ? this.filterParams : null;
-    this.experimentApiService.getExperiments(params)
+    this.experimentApiService.getExperiments(this.filterParams ? this.filterParams : null)
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
