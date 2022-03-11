@@ -1,7 +1,7 @@
-export interface FilterParams {
-  interventionType: any[];
+export interface FilterParamsModel {
+  interventionType: any;
   intervention: any[];
-  species: any[];
+  species: any;
   strain: any[];
   avgLifespanChangePercent: any; // TODO: typing
   maxLifespanChangePercent: any;
@@ -20,3 +20,4 @@ export type FilterTypes =
   | 'avgLifespan'
   | 'maxLifespan'
   | 'year';
+

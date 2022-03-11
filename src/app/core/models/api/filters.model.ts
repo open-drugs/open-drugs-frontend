@@ -6,7 +6,7 @@ export interface Filters {
   interventionType: {
     id: number;
     name: 'control' | 'drug' | 'diet';
-  }[]
+  }[];
   intervention: Intervention[];
   species: Item[];
   strain: Item[];

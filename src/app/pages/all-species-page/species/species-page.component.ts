@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowWidth } from '../../../core/utils/window-width';
@@ -8,8 +8,8 @@ import { WindowWidthService } from '../../../core/services/browser/window-width.
 import { ExperimentApiService } from '../../../core/services/api/experiment-api.service';
 import { PlotDataService } from '../../../core/services/api/plot-data.service';
 import { Filters } from '../../../core/models/api/filters.model';
-import { FilterParams } from '../../../core/models/filter-params';
-import { MatSelectChange } from '@angular/material/select';
+import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-params.model';
+import { FilterParametersService } from '../../../core/services/filter-parameters.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,10 +42,12 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     },
   };
 
+  private filterParams: Partial<FilterParamsModel>;
   private unsubscribe$ = new Subject();
 
   constructor(
     public windowWidthService: WindowWidthService,
+    private filterParametersService: FilterParametersService,
     private experimentApiService: ExperimentApiService,
     private plotDataService: PlotDataService,
     private readonly cdRef: ChangeDetectorRef,
@@ -55,7 +57,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
 
   ngOnInit(): void {
     this.getExperimentsData();
-
 
     this.initWindowWidth(() => {
       this.feedLayout = this.isMobile ? 'cards' : 'table';
@@ -74,15 +75,35 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
   }
 
-  public getExperimentsData(param: {name: string, value: any} | null = null): void {
-    let queryParams = '';
-    // TODO: now only a single parameter at time
-    if (param) {
-      queryParams = `?${param.name}=${param.value}`;
+  // TODO: WIP
+  public retrieveAndSetParams(next?: Function) {
+    this.filterParametersService.getFiltersState()
+      .pipe(
+        takeUntil(this.unsubscribe$),
+      ).subscribe((res) => {
+      const params = res;
+      console.log(params);
+      for (const key in params) {
+        if (params[key as FilterTypes] === undefined) {
+          delete params[key as FilterTypes];
+        }
+        if (params[key as FilterTypes] && params[key as FilterTypes].length === 0) {
+          delete params[key as FilterTypes];
+        }
+      }
+
+      this.filterParams = params;
+        console.log('params: ', this.filterParams);
+    });
+
+    if (next) {
+      next.call(this);
     }
-    console.log('getExperiments()');
-    console.log('params: ', param);
-    this.experimentApiService.getExperiments(queryParams)
+  }
+
+  public getExperimentsData(): void {
+    const params = this.filterParams ? this.filterParams : null;
+    this.experimentApiService.getExperiments(params)
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {

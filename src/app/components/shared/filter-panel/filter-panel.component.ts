@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
-import { FilterTypes } from '../../../core/models/filter-params';
+import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-params.model';
 import { Filters, Intervention } from '../../../core/models/api/filters.model';
 import { Subject } from 'rxjs';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
@@ -111,6 +111,10 @@ export class FilterPanelComponent {
   }
 
   public pickInterventions() {
+    // Cancel interventions' selected option before
+    this.selectedInterventions = [];
+    this.filterApplied.emit({name: 'interventions', value: []})
+    // Show a list of interventions filtered by a 'type' field
     const interventions = this.getEntitiesList('intervention');
     this.interventions = interventions.filter((intervention: Intervention) => intervention?.type == this.selectedInterventionType);
     this.filterParametersService.retrieveQueryParamFromUrl('intervention')

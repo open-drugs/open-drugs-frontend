@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FilterParams } from '../../core/models/filter-params';
+import { FilterParamsModel } from '../../core/models/filter-params.model';
 import { MockApiService } from '../../core/services/api/mock-api.service';
 
 @Component({
@@ -53,7 +53,7 @@ export class SearchPageComponent implements OnInit {
     this.search($query);
   }
 
-  private updateDrugListByFilterParams(filterParams: FilterParams): void {
+  private updateDrugListByFilterParams(filterParams: FilterParamsModel): void {
     const arrayOfValues = Object.values(filterParams).filter(res => res);
 
     if (!arrayOfValues.length) {

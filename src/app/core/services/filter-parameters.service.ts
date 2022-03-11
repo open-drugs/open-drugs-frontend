@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Observable, of } from 'rxjs';
+import { FilterParamsModel } from '../models/filter-params.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,19 @@ export class FilterParametersService {
     private route: ActivatedRoute
   ) {}
 
-  public retrieveQueryParamFromUrl(param: string): Observable<any> {
+  private appliedFiltersState: FilterParamsModel = {
+    avgLifespan: undefined,
+    avgLifespanChangePercent: undefined,
+    intervention: [],
+    interventionType: undefined,
+    maxLifespan: undefined,
+    maxLifespanChangePercent: undefined,
+    species: undefined,
+    strain: [],
+    year: []
+  };
+
+  public retrieveQueryParamFromUrl(param?: string): Observable<any> {
     this.route.queryParams.subscribe(params => {
       if (param) {
         return of(params[param])
@@ -24,13 +37,25 @@ export class FilterParametersService {
     return of(null);
   }
 
-  public applyQueryParams(query: string, value: any | any[]): void {
-    const val = Array.isArray(value)? value : value.split(',');
-    console.log(val);
+  public getFiltersState(): Observable<FilterParamsModel> {
+    return of(this.appliedFiltersState);
+  }
+
+  public applyQueryParams(param: string, value: any | any[]): void {
+    if (this.appliedFiltersState.hasOwnProperty(param)) {
+      if (Array.isArray(value)) {
+        this.appliedFiltersState[param as keyof FilterParamsModel] = value.join(',');
+      } else {
+        this.appliedFiltersState[param as keyof FilterParamsModel] = value;
+      }
+    }
+    const urlTree = this.router.parseUrl(this.router.url);
+    const urlWithoutParams = urlTree.root.children['primary'].segments.map(it => it.path).join('/');
+
     this.router.navigate(
-      [this.router.url],
+      [urlWithoutParams],
       {
-        queryParams: { [query]: val },
+        queryParams: { ...this.appliedFiltersState },
       });
   }
 }
