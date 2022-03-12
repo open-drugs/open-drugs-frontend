@@ -12,7 +12,6 @@ import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-para
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-species-page',
   templateUrl: './species-page.component.html',
   styleUrls: ['./species-page.component.scss'],
@@ -63,7 +62,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
-      this.cdRef.markForCheck();
     });
 
     this.detectWindowWidth(() => {
@@ -71,7 +69,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
-      this.cdRef.markForCheck();
     });
   }
 
@@ -110,7 +107,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.drugsData = res.items;
       this.filtersOptions = res.filters;
       this.drugsPageOptions = res.options; // TODO: pagination
-      this.cdRef.markForCheck();
     });
     // TODO: Error handling
   }
@@ -140,6 +136,5 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     } else {
       this.plotData = [];
     }
-    this.cdRef.markForCheck();
   }
 }

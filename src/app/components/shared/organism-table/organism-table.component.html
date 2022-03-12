@@ -20,9 +20,16 @@
   <ng-container *ngIf="drugsData && drugsData.length">
     <mat-card *ngFor="let drug of drugsData"
               class="card">
-      <app-organism-table-row
-        [drug]="drug"
-        (drugId)="checkboxStatesChange($event)"></app-organism-table-row>
+      <mat-card-title>
+        {{ drug.intervention.drugIntervention?.drug?.name }}
+      </mat-card-title>
+      <mat-card-content>
+        {{drug.strain.name || '\t&#8212;'}}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Show on plot</button>
+      </mat-card-actions>
+      <mat-card-footer></mat-card-footer>
     </mat-card>
   </ng-container>
 </section>
