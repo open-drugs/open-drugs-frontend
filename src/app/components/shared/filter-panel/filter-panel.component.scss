@@ -1,6 +1,4 @@
-:host {
-
-}
+@import "../../../../assets/styles/dependencies";
 
 .filters-panel {
   display: flex;
@@ -8,6 +6,9 @@
 
   &__filter {
     margin-right: 20px;
+    ::ng-deep {
+      @include mat-select-style;
+    }
   }
 }
 
