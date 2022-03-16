@@ -58,14 +58,14 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     this.getExperimentsData();
 
     this.initWindowWidth(() => {
-      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.feedLayout = 'table'; // this.isMobile ? 'cards' : 'table'
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
     });
 
     this.detectWindowWidth(() => {
-      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.feedLayout = 'table'; // this.isMobile ? 'cards' : 'table'
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',
       };
