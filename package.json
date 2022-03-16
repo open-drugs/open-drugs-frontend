@@ -10,6 +10,7 @@
     "build-dev": "ng build --configuration=test",
     "build-demo": "ng build --configuration=demo",
     "build-prod": "ng build --prod",
+    "fb-deploy": "npm run build-prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
