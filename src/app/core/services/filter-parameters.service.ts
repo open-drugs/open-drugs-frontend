@@ -18,8 +18,8 @@ export class FilterParametersService {
     avgLifespanChangePercent: undefined,
     intervention: [],
     interventionType: undefined,
-    maxLifespan: undefined,
-    maxLifespanChangePercent: undefined,
+    maxLifespan: [],
+    maxLifespanChangePercent: [],
     species: undefined,
     strain: [],
     year: []

@@ -1,4 +1,4 @@
-import { Item } from './basic-types.model';
+import { FilterRange, Item } from './basic-types.model';
 
 export type Intervention = Partial<Item> & { type: string; };
 
@@ -10,9 +10,9 @@ export interface Filters {
   intervention: Intervention[];
   species: Item[];
   strain: Item[];
-  avgLifespanChangePercent: Omit<Range, 'unit'>;
-  maxLifespanChangePercent: Omit<Range, 'unit'>;
-  avgLifespan: Range;
-  maxLifespan: Range;
+  avgLifespanChangePercent: Omit<FilterRange, 'unit'>;
+  maxLifespanChangePercent: Omit<FilterRange, 'unit'>;
+  avgLifespan: FilterRange;
+  maxLifespan: FilterRange;
   year: number[];
 }

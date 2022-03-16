@@ -107,6 +107,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       this.drugsData = res.items;
+      console.log(res.items);
       this.filtersOptions = res.filters;
       this.drugsPageOptions = res.options; // TODO: pagination
     });

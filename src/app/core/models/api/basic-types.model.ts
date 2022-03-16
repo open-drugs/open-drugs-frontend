@@ -3,7 +3,7 @@ export type Item = {
   name: string;
 }
 
-export type Range = {
+export type FilterRange = {
   min: number;
   max: number;
   unit: string;

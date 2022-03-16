@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
-import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-params.model';
+import { FilterTypes } from '../../../core/models/filter-params.model';
 import { Filters, Intervention } from '../../../core/models/api/filters.model';
 import { Subject } from 'rxjs';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
 import { takeUntil } from 'rxjs/operators';
 
+type RangeValue = {[key:string]: number | undefined};
 @Component({
   selector: 'app-filter-panel',
   templateUrl: './filter-panel.component.html',
@@ -15,20 +16,38 @@ import { takeUntil } from 'rxjs/operators';
 export class FilterPanelComponent {
   public filtersForm: FormGroup;
   // FILTERS
-  // Intervention types
+  // Selects
+  // - Intervention types
   public selectedInterventionType = '';
   public interventionTypes: any[] | any | null;
-  // Intervention type - interventions
+  // - Intervention type - interventions
   public selectedInterventions = [];
   public interventions: any[] | any | null;
-  // Species
+  // - Species
   public selectedSpecies: any;
   public species: any[] | any | null;
+  // Sliders
+  public slidersStep = 5;
+  // - Avg lifespan change %
+  public avgLifespanChangePercent: RangeValue = {
+    min: undefined,
+    max: undefined,
+    currentMin: undefined,
+    currentMax: undefined,
+  };
+  // - Max lifespan change %
+  public maxLifespanChangePercent: RangeValue = {
+    min: undefined,
+    max: undefined,
+    currentMin: undefined,
+    currentMax: undefined,
+  };
 
   private subscription$ = new Subject;
 
   @Input() filters: Filters;
   @Output() filterApplied: EventEmitter<{name: string, value: any}> = new EventEmitter<{name: string, value: any}>();
+
 
   constructor(
     private filterParametersService: FilterParametersService,
@@ -37,12 +56,16 @@ export class FilterPanelComponent {
       interventionTypeSelect: new FormControl(['', Validators.minLength(1)]),
       interventionsSelect: new FormControl([[], null]),
       speciesSelect: new FormControl(['', null]),
+      avgLifespanChangePercentMinInput: new FormControl(0, null),
+      avgLifespanChangePercentMaxInput: new FormControl(0, null),
+      maxLifespanChangePercentMinInput: new FormControl(0, null),
+      maxLifespanChangePercentMaxInput: new FormControl(0, null),
     });
   }
 
   ngOnInit(): void {
     // FILTERS
-    // Intervention types
+    // Intervention types (select)
     this.interventionTypes = this.getEntitiesList('interventionType');
     this.filterParametersService.retrieveQueryParamFromUrl('interventionType')
       .pipe(takeUntil(this.subscription$))
@@ -50,16 +73,28 @@ export class FilterPanelComponent {
         this.selectedInterventionType = res;
       });
 
-    // Interventions
+    // Interventions (select)
     this.pickInterventions();
 
-    // Species
+    // Species (select)
     this.species = this.getEntitiesList('species');
     this.filterParametersService.retrieveQueryParamFromUrl('species')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
         this.selectedSpecies = res;
       });
+
+    // Avg lifespan change % (range slider)
+    this.avgLifespanChangePercent.min = this.getEntitiesList('avgLifespanChangePercent').min;
+    this.avgLifespanChangePercent.max = this.getEntitiesList('avgLifespanChangePercent').max;
+    this.avgLifespanChangePercent.currentMin = this.avgLifespanChangePercent.min;
+    this.avgLifespanChangePercent.currentMax = this.avgLifespanChangePercent.max;
+
+    // Max lifespan change % (range slider)
+    this.maxLifespanChangePercent.min = this.getEntitiesList('maxLifespanChangePercent').min;
+    this.maxLifespanChangePercent.max = this.getEntitiesList('maxLifespanChangePercent').max;
+    this.maxLifespanChangePercent.currentMin = this.maxLifespanChangePercent.min;
+    this.maxLifespanChangePercent.currentMax = this.maxLifespanChangePercent.max;
   }
 
   ngOnDestroy(): void {
@@ -108,6 +143,20 @@ export class FilterPanelComponent {
     if (callback) {
       callback.call(this);
     }
+  }
+
+  applyRange(key: FilterTypes, rangePoint: 'min' | 'max', $event: number) {
+    switch (rangePoint) {
+      case 'min':
+        this.maxLifespanChangePercent.currentMin = Math.floor($event);
+        break;
+      case 'max':
+        this.maxLifespanChangePercent.currentMax = Math.floor($event);
+        break;
+    }
+    const value = [this.maxLifespanChangePercent.currentMin, this.maxLifespanChangePercent.currentMax];
+    this.filterParametersService.applyQueryParams(key, value);
+    this.filterApplied.emit({name: key, value: value});
   }
 
   public pickInterventions() {

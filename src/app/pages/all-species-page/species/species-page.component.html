@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="grid-container species">
   <div class="grid-container__sidebar">
     <app-filter-panel
       *ngIf="filtersOptions"
@@ -7,6 +7,9 @@
     ></app-filter-panel>
   </div>
   <div class="grid-container__content __w-content">
+    <h1 class="species__title">
+      Mus musculus
+    </h1>
     <div class="species__plot">
       <plotly-plot
         [data]="plotData"
