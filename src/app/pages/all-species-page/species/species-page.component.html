@@ -6,13 +6,14 @@
       (filterApplied)="retrieveAndSetParams(getExperimentsData)"
     ></app-filter-panel>
   </div>
-  <div class="grid-container__content">
+  <div class="grid-container__content __w-content">
     <div class="species__plot">
       <plotly-plot
         [data]="plotData"
         [layout]="plotLayout"
+        (autoSize)="windowSizeChanged"
         [useResizeHandler]="true"
-        [style]="{position: 'relative', width: '100%'}">
+        [style]="{position: 'relative', width: '100%', height:'auto'}">
       </plotly-plot>
     </div>
 

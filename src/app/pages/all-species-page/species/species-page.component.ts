@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowWidth } from '../../../core/utils/window-width';
@@ -40,6 +40,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       linewidth: 2
     },
   };
+  public windowSizeChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private filterParams: Partial<FilterParamsModel>;
   private unsubscribe$ = new Subject();
@@ -65,6 +66,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
 
     this.detectWindowWidth(() => {
+      this.windowSizeChanged.emit(true);
       this.feedLayout = 'table'; // this.isMobile ? 'cards' : 'table'
       this.plotLayout.legend = {
         orientation: this.isMobile ? 'h' : '',

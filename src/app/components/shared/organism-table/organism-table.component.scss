@@ -1,6 +1,7 @@
 @import "styles/variables";
 
 :host {
+  display: block;
   width: 100%;
   max-width: 100%;
   overflow: auto;
