@@ -91,10 +91,10 @@ export class FilterPanelComponent {
     this.avgLifespanChangePercent.currentMax = this.avgLifespanChangePercent.max;
 
     // Max lifespan change % (range slider)
-    this.maxLifespanChangePercent.min = this.getEntitiesList('maxLifespanChangePercent').min;
-    this.maxLifespanChangePercent.max = this.getEntitiesList('maxLifespanChangePercent').max;
-    this.maxLifespanChangePercent.currentMin = this.maxLifespanChangePercent.min;
-    this.maxLifespanChangePercent.currentMax = this.maxLifespanChangePercent.max;
+    this.maxLifespanChangePercent.min = this.getEntitiesList('maxLifespanChangePercent').min as number;
+    this.maxLifespanChangePercent.max = this.getEntitiesList('maxLifespanChangePercent').max as number;
+    this.maxLifespanChangePercent.currentMin = this.maxLifespanChangePercent.min as number;
+    this.maxLifespanChangePercent.currentMax = this.maxLifespanChangePercent.max as number;
   }
 
   ngOnDestroy(): void {
