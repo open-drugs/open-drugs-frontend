@@ -1,6 +1,12 @@
 @import '../../../assets/styles/dependencies';
 @import '../../../assets/styles/sources/project/mixins/hint';
 
+.wrapper {
+  height: 100%;
+  background-color: $color-white;
+  padding: $gutter 0;
+}
+
 .grid-container {
   align-items: center;
 }

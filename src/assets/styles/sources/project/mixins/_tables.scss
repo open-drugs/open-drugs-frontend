@@ -6,13 +6,18 @@ $table-cell-sizes: (
 
 $table-cell-directions: ('left', 'center', 'right');
 
+@mixin table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 @mixin table-cell {
   .table-cell {
     font-size: $font-size;
     text-align: left;
     vertical-align: middle;
     padding: 8px 10px 10px 10px;
-    border-bottom: 2px solid $color-borders;
+    border-bottom: 1px solid $color-borders;
     font-weight: $font-weight-regular;
     word-wrap: break-word;
 

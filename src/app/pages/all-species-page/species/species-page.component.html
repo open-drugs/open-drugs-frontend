@@ -1,32 +1,35 @@
-<div class="grid-container species">
-  <div class="grid-container__sidebar">
-    <app-filter-panel
-      *ngIf="filtersOptions"
-      [filters]="filtersOptions"
-      (filterApplied)="retrieveAndSetParams(getExperimentsData)"
-    ></app-filter-panel>
-  </div>
-  <div class="grid-container__content __w-content">
-    <h1 class="species__title">
-      Mus musculus
-    </h1>
-    <div class="species__plot">
-      <plotly-plot
-        [data]="plotData"
-        [layout]="plotLayout"
-        (autoSize)="windowSizeChanged"
-        [useResizeHandler]="true"
-        [style]="{position: 'relative', width: '100%', height:'auto'}">
-      </plotly-plot>
+<div class="wrapper">
+  <div class="grid-container species">
+    <div class="grid-container__sidebar">
+      <app-filter-panel
+        *ngIf="filtersOptions"
+        [filters]="filtersOptions"
+        (filterApplied)="retrieveAndSetParams(getExperimentsData)"
+      ></app-filter-panel>
     </div>
+    <div class="grid-container__content __w-content">
+      <h1 class="species__title">
+        Mus musculus
+      </h1>
+      <div class="species__plot">
+        <plotly-plot
+          [data]="plotData"
+          [layout]="plotLayout"
+          (autoSize)="windowSizeChanged"
+          [useResizeHandler]="true"
+          [style]="{position: 'relative', width: '100%', height:'auto'}">
+        </plotly-plot>
+      </div>
 
-    <app-organism-table
-      [drugsData]="drugsData"
-      [layout]="feedLayout"
-      (checkedIds)="setPlotData($event)">
-    </app-organism-table>
+      <app-organism-table
+        [drugsData]="drugsData"
+        [layout]="feedLayout"
+        (checkedIds)="setPlotData($event)">
+      </app-organism-table>
+    </div>
   </div>
 </div>
+
 
 
 

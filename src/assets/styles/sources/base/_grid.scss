@@ -19,15 +19,17 @@
 
   .grid-container__content {
     grid-area: content;
-
-    &--full-width {
-      grid-column-start: 1;
-    }
   }
 
   @include resolution_desktop-and-up {
     grid-template-columns: $sidebar-width auto;
     grid-template-areas: "sidebar content";
+
+    .grid-container__content {
+      &--full-width {
+        grid-column-start: 1;
+      }
+    }
   }
 
   @include resolution_smartphone-and-tablet {
@@ -35,5 +37,11 @@
     grid-template-areas:
     "sidebar"
     "content";
+
+    .grid-container__content {
+      &--full-width {
+        grid-row-start: 1;
+      }
+    }
   }
 }

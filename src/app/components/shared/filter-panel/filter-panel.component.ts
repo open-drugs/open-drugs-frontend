@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
 import { takeUntil } from 'rxjs/operators';
 
-type RangeValue = {[key:string]: number | undefined};
+type RangeValue = {[key:string]: number};
 @Component({
   selector: 'app-filter-panel',
   templateUrl: './filter-panel.component.html',
@@ -30,17 +30,17 @@ export class FilterPanelComponent {
   public slidersStep = 5;
   // - Avg lifespan change %
   public avgLifespanChangePercent: RangeValue = {
-    min: undefined,
-    max: undefined,
-    currentMin: undefined,
-    currentMax: undefined,
+    min: 0,
+    max: 0,
+    currentMin: 0,
+    currentMax: 0,
   };
   // - Max lifespan change %
   public maxLifespanChangePercent: RangeValue = {
-    min: undefined,
-    max: undefined,
-    currentMin: undefined,
-    currentMax: undefined,
+    min: 0,
+    max: 0,
+    currentMin: 0,
+    currentMax: 0,
   };
 
   private subscription$ = new Subject;
@@ -91,10 +91,10 @@ export class FilterPanelComponent {
     this.avgLifespanChangePercent.currentMax = this.avgLifespanChangePercent.max;
 
     // Max lifespan change % (range slider)
-    this.maxLifespanChangePercent.min = this.getEntitiesList('maxLifespanChangePercent').min as number;
-    this.maxLifespanChangePercent.max = this.getEntitiesList('maxLifespanChangePercent').max as number;
-    this.maxLifespanChangePercent.currentMin = this.maxLifespanChangePercent.min as number;
-    this.maxLifespanChangePercent.currentMax = this.maxLifespanChangePercent.max as number;
+    this.maxLifespanChangePercent.min = this.getEntitiesList('maxLifespanChangePercent').min;
+    this.maxLifespanChangePercent.max = this.getEntitiesList('maxLifespanChangePercent').max;
+    this.maxLifespanChangePercent.currentMin = this.maxLifespanChangePercent.min;
+    this.maxLifespanChangePercent.currentMax = this.maxLifespanChangePercent.max;
   }
 
   ngOnDestroy(): void {
