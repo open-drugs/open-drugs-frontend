@@ -1,5 +1,5 @@
 {
-  "name": "listcontrols",
+  "name": "open-drugs-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -30,6 +30,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-plotly.js": "^4.0.4",
     "bootstrap": "^4.4.1",
+    "firebase-tools": "^10.3.0",
     "plotly.js-dist-min": "^2.8.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

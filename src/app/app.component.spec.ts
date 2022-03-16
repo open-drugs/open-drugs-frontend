@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'listcontrols'`, () => {
+  it(`should have as title 'open-drugs-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('listcontrols');
+    // expect().matcher
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('listcontrols app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('open-drugs-frontend app is running!');
   });
 });
