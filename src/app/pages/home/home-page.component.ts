@@ -33,11 +33,11 @@ export class HomePageComponent extends WindowWidth implements OnInit, OnDestroy 
     this.getSpecies();
 
     this.initWindowWidth(() => {
-      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.feedLayout = 'table'; // this.isMobile ? 'cards' : 'table'
     });
 
     this.detectWindowWidth(() => {
-      this.feedLayout = this.isMobile ? 'cards' : 'table';
+      this.feedLayout = 'table'; // this.isMobile ? 'cards' : 'table'
     });
   }
 
