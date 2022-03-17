@@ -26,19 +26,25 @@ export class FilterParametersService {
   };
 
   public retrieveQueryParamFromUrl(param?: string): Observable<any> {
+    let o = null;
     this.route.queryParams.subscribe(params => {
       if (param) {
-        return of(params[param])
+        o = params[param];
+      } else {
+        o = params;
       }
-
-      return of(params)
     });
-
-    return of(null);
+    return of(o);
   }
 
   public getFiltersState(): Observable<FilterParamsModel> {
     return of({...this.appliedFiltersState});
+  }
+
+  private removeEmptyFields(obj: {}) {
+    return Object.entries(obj)
+      .filter(([_, v]) => v != null)
+      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
   }
 
   public applyQueryParams(param: string, value: any | any[]): void {
@@ -52,10 +58,13 @@ export class FilterParametersService {
     const urlTree = this.router.parseUrl(this.router.url);
     const urlWithoutParams = urlTree.root.children['primary'].segments.map(it => it.path).join('/');
 
+    const filterParams = this.removeEmptyFields(this.appliedFiltersState);
+    console.log('filterParams: ', filterParams);
+
     this.router.navigate(
       [urlWithoutParams],
       {
-        queryParams: { ...this.appliedFiltersState },
+        queryParams: { ...filterParams },
       });
   }
 }

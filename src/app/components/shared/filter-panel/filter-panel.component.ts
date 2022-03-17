@@ -20,7 +20,7 @@ export class FilterPanelComponent {
   // - Intervention types
   public selectedInterventionType = '';
   public interventionTypes: any[] | any | null;
-  // - Intervention type - interventions
+  // - Intervention type - interventions (multiple)
   public selectedInterventions = [];
   public interventions: any[] | any | null;
   // - Species
@@ -70,10 +70,11 @@ export class FilterPanelComponent {
     this.filterParametersService.retrieveQueryParamFromUrl('interventionType')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
+        console.log('interventionType pram from url: ', res);
         this.selectedInterventionType = res;
       });
 
-    // Interventions (select)
+    // Interventions (multiple select)
     this.pickInterventions();
 
     // Species (select)
@@ -169,7 +170,9 @@ export class FilterPanelComponent {
     this.filterParametersService.retrieveQueryParamFromUrl('intervention')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        this.selectedInterventions = res;
+        // @ts-ignore
+        this.selectedInterventions = new Array(res);
+        console.log('pickInterventions: ', this.selectedInterventions);
       });
   }
 }
