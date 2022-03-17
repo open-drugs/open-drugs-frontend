@@ -1,6 +1,11 @@
 @import '../../../assets/styles/dependencies';
 @import '../../../assets/styles/sources/project/mixins/link';
 
+.wrapper {
+  height: 100%;
+  padding: $gutter 0;
+}
+
 .link {
   @include link;
 }

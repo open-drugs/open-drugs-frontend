@@ -1,14 +1,17 @@
-<div class="grid-container">
-  <div class="grid-container__content grid-container__content--full-width">
-    <app-search-field
-      (query)="updateSearch($event)"
-      [data]="searchQuery"
-    ></app-search-field>
+<div class="wrapper">
+  <div class="grid-container">
+    <div class="grid-container__content grid-container__content--full-width">
+      <app-search-field
+        (query)="updateSearch($event)"
+        [data]="searchQuery"
+      ></app-search-field>
 
-    <h1 class="__mt-10">{{ searchQuery }}</h1>
+      <h1 class="__mt-10">{{ searchQuery }}</h1>
 
-    <app-feed-table
-      [data]="searchResults"
-    ></app-feed-table>
+      <app-feed-table
+        [data]="searchResults"
+      ></app-feed-table>
+    </div>
   </div>
 </div>
+
