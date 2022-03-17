@@ -145,18 +145,18 @@ export class FilterPanelComponent {
     }
   }
 
-  applyRange(key: FilterTypes, rangePoint: 'min' | 'max', $event: number) {
+  applyRange(key: FilterTypes, field: any, rangePoint: 'min' | 'max', $event: number) {
     switch (rangePoint) {
       case 'min':
-        this.maxLifespanChangePercent.currentMin = Math.floor($event);
+        field.currentMin = Math.floor($event);
         break;
       case 'max':
-        this.maxLifespanChangePercent.currentMax = Math.floor($event);
+        field.currentMax = Math.floor($event);
         break;
     }
-    const value = [this.maxLifespanChangePercent.currentMin, this.maxLifespanChangePercent.currentMax];
+    const value = [field.currentMin, field.currentMax];
     this.filterParametersService.applyQueryParams(key, value);
-    this.filterApplied.emit({name: key, value: value});
+    this.filterApplied.emit({ name: key, value: value });
   }
 
   public pickInterventions() {

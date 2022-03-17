@@ -47,8 +47,8 @@
         [sliderStep]="slidersStep"
         [minCurrentValue]="avgLifespanChangePercent.currentMin"
         [maxCurrentValue]="avgLifespanChangePercent.currentMax"
-        (minCurrentValueChange)="applyRange('avgLifespanChangePercent', 'min', $event)"
-        (maxCurrentValueChange)="applyRange('avgLifespanChangePercent', 'max', $event)"
+        (minCurrentValueChange)="applyRange('avgLifespanChangePercent', avgLifespanChangePercent, 'min', $event)"
+        (maxCurrentValueChange)="applyRange('avgLifespanChangePercent', avgLifespanChangePercent, 'max', $event)"
       ></app-slider>
     </div>
     <div class="slider__fields-row">
@@ -79,8 +79,8 @@
         [sliderStep]="slidersStep"
         [minCurrentValue]="maxLifespanChangePercent.currentMin"
         [maxCurrentValue]="maxLifespanChangePercent.currentMax"
-        (minCurrentValueChange)="applyRange('maxLifespanChangePercent', 'min', $event)"
-        (maxCurrentValueChange)="applyRange('maxLifespanChangePercent', 'max', $event)"
+        (minCurrentValueChange)="applyRange('maxLifespanChangePercent', maxLifespanChangePercent, 'min', $event)"
+        (maxCurrentValueChange)="applyRange('maxLifespanChangePercent', maxLifespanChangePercent, 'max', $event)"
       ></app-slider>
     </div>
     <div class="slider__fields-row">
