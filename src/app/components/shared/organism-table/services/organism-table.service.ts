@@ -4,28 +4,32 @@ import { Experiment } from '../../../../core/models/api/experiment.model';
 
 @Injectable()
 export class OrganismTableService {
-  private checkedDrugs = new BehaviorSubject<Experiment[]>([]);
+  private checkedIds: number[] = [123];
+  private checkedExperimentIds = new BehaviorSubject<number[]>(this.checkedIds);
 
   constructor() { }
 
-  updateCheckedDrugs(drugs: Experiment[], event: boolean | number): void {
-    drugs.forEach((drug) => {
-      if (typeof event === 'number') {
-        if (drug.id === event) {
-          drug.checked = !drug.checked;
-        }
-      } else {
-        drug.checked = event;
-      }
-    });
+  getCheckedIds(): Observable<number[]> {
+    return this.checkedExperimentIds.asObservable();
+  }
 
-    if (drugs.length) {
-      const checked = drugs.filter((drug) => drug.checked);
-      this.checkedDrugs.next(checked);
+  updateCheckedDrugs(drugs: Experiment[], drugId: number): void {
+    if (!this.checkedIds.includes(drugId)) {
+      this.checkedIds.push(drugId);
+    } else {
+      this.checkedIds = this.checkedIds.filter((id) => id !== drugId);
     }
+
+    this.updateIds(this.checkedIds);
   }
 
-  getCheckedDrugs(): Observable<Experiment[]> {
-    return this.checkedDrugs.asObservable();
+  selectAllDrugs(drugs: Experiment[], selected: boolean): void {
+    this.checkedIds = selected ? drugs.map((drug) => drug.id) : [];
+    this.updateIds(this.checkedIds);
   }
+
+  private updateIds(ids: number[]): void {
+    this.checkedExperimentIds.next(ids);
+  }
+
 }
