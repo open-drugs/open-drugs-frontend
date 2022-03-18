@@ -1,12 +1,17 @@
 @import "styles/variables";
+@import "../../../../assets/styles/dependencies";
 
 :host {
+  display: block;
   width: 100%;
   max-width: 100%;
   overflow: auto;
 }
 
 .table {
-  width: 100%;
+  @include table;
 }
 
+.card {
+  margin-top: 20px;
+}

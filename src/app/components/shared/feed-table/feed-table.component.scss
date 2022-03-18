@@ -9,7 +9,6 @@
 }
 
 .table {
-  width: 100%;
+  @include table;
 }
-
 

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { WindowWidth } from '../../../core/utils/window-width';
-import { WindowWidthService } from '../../../core/services/browser-view/window-width.service';
+import { WindowWidthService } from '../../../core/services/browser/window-width.service';
 
 @Component({
   selector: 'app-header',

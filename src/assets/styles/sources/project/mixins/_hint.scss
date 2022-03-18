@@ -13,10 +13,36 @@
 
   &__content {
     flex: 1 1;
+    min-width: 80%;
     padding-right: $padding-l;
+    margin-bottom: $padding-s;
   }
 
-  &__button {
-    width: 160px;
+  &__link {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    width: auto;
+    height: 26px;
+    padding: 0;
+    transition: color .15s linear;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: $font-weight-medium;
+    line-height: 1;
+
+    &:link,
+    &:visited {
+      color: $color-blue-500;
+    }
+
+    &:hover {
+      color: $color-blue-600;
+    }
+
+    &:active {
+      color: $color-blue-700;
+    }
   }
 }

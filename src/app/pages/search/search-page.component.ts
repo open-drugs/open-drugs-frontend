@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FilterService } from '../../core/services/filter.service';
-import { FilterParams } from '../../core/models/filter-params';
+import { FilterParamsModel } from '../../core/models/filter-params.model';
 import { MockApiService } from '../../core/services/api/mock-api.service';
 
 @Component({
@@ -20,19 +19,12 @@ export class SearchPageComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private filterService: FilterService,
     private mockApiService: MockApiService
   ) {
     this.updateSearchQuery();
   }
 
   ngOnInit(): void {
-    this.filterService.filterForm.valueChanges
-      .pipe(takeUntil(this.subscription$))
-      .subscribe((filterParams: FilterParams) => {
-        this.updateDrugListByFilterParams(filterParams);
-      });
-
     this.search(this.searchQuery);
     this.searchService.getQueries()
       .subscribe((queries) => console.log(queries));
@@ -61,7 +53,7 @@ export class SearchPageComponent implements OnInit {
     this.search($query);
   }
 
-  private updateDrugListByFilterParams(filterParams: FilterParams): void {
+  private updateDrugListByFilterParams(filterParams: FilterParamsModel): void {
     const arrayOfValues = Object.values(filterParams).filter(res => res);
 
     if (!arrayOfValues.length) {

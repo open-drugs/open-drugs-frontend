@@ -1,14 +1,19 @@
+import { Filters } from './filters.model';
+
 export interface ApiResponse<T> {
   items: T[];
-  filters: any;
+  filters: Filters;
   options: PageOptions;
 }
 
 export interface PageOptions {
   objTotal: number;
-  pagination: {
-    page: number,
-    pageSize: number,
-    pagesTotal: number
-  };
+  pagination: Pagination;
 }
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pagesTotal?: number;
+}
+

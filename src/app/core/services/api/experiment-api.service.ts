@@ -15,11 +15,11 @@ export class ExperimentApiService {
     private http: HttpClient
   ) { }
 
-  getDrugs(): Observable<ApiResponse<Experiment>> {
-    return this.http.get<ApiResponse<Experiment>>(this.url + 'api/experiment/search');
+  getExperiments(params?: any): Observable<ApiResponse<Experiment>> {
+    return this.http.get<ApiResponse<Experiment>>( `${this.url}api/experiment/search`, {params});
   }
 
-  getDrugById(id: number): Observable<Experiment> {
-    return this.http.get<Experiment>(this.url + `api/experiment/${id}`);
+  getExperimentById(id: number): Observable<Experiment> {
+    return this.http.get<Experiment>( `${this.url}api/experiment/${id}`);
   }
 }

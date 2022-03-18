@@ -1,4 +1,6 @@
 @import "./mixins/hint";
 @import "./mixins/link";
+@import "./mixins/vendors-overrides";
+@import "./mixins/tables";
 
 // TODO: some of mixins should be replaced with attribute directives to avoid spaghetti style inheritance

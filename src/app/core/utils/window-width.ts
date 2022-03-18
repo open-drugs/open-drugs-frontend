@@ -1,7 +1,7 @@
 import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { WindowWidthService } from '../services/browser-view/window-width.service';
+import { WindowWidthService } from '../services/browser/window-width.service';
 
 @Directive()
 export abstract class WindowWidth implements OnDestroy{
@@ -21,7 +21,7 @@ export abstract class WindowWidth implements OnDestroy{
     }
   }
 
-  protected initWindowWidth(callback: any): void {
+  protected initWindowWidth(callback: Function): void {
     this.windowWidthService
       .setWindowWidth()
       .pipe(
@@ -33,7 +33,7 @@ export abstract class WindowWidth implements OnDestroy{
       });
   }
 
-  protected detectWindowWidth(callback: any): void {
+  protected detectWindowWidth(callback: Function): void {
     this.windowWidthService.windowWidth$
       .pipe(
         takeUntil(this.subscription$)

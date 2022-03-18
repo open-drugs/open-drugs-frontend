@@ -1,28 +1,29 @@
-<div class="grid-container">
-  <div class="grid-container__content grid-container__content--full-width">
-    <app-search-field (query)="goToSearch($event)"></app-search-field>
+<div class="wrapper">
+  <div class="grid-container">
+    <div class="grid-container__content grid-container__content--full-width">
+      <app-search-field (query)="goToSearch($event)"></app-search-field>
 
-    <app-feed-table
-      class="feed"
-      [data]="feedData"
-      [layout]="feedLayout">
-    </app-feed-table>
+      <app-feed-table *ngIf="feedData"
+                      class="feed"
+                      [data]="feedData.items"
+                      [layout]="feedLayout">
+      </app-feed-table>
 
-    <div class="hint">
-      <div class="hint__content">
-        In order to get closer to the answers to these questions, we decided to revise the existing literature and
-        create a new, expanded version of the database of aging-related compounds. Our approach is to take every detail
-        of the experiment into account. What was the strain or breed of the organisms, at what temperature they were
-        kept, what was the start point of the therapy, how exactly the active substance was delivered...
+      <div class="hint __mt-45">
+        <div class="hint__content">
+          In order to get closer to the answers to these questions, we decided to revise the existing literature and
+          create a new, expanded version of the database of aging-related compounds. Our approach is to take every detail
+          of the experiment into account. What was the strain or breed of the organisms, at what temperature they were
+          kept, what was the start point of the therapy, how exactly the active substance was delivered...
+        </div>
+        <a href="#"
+           target="_blank"
+           class="hint__link"
+        >Read a full article
+          <mat-icon>chevron_right</mat-icon>
+        </a>
       </div>
-      <a href="#"
-         target="_blank"
-         class="hint__button"
-         mat-button
-         color="primary"
-      >Read a full article
-        <mat-icon>chevron_right</mat-icon>
-      </a>
     </div>
   </div>
 </div>
+

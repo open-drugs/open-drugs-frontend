@@ -1,5 +1,5 @@
 {
-  "name": "listcontrols",
+  "name": "open-drugs-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,6 +10,7 @@
     "build-dev": "ng build --configuration=test",
     "build-demo": "ng build --configuration=demo",
     "build-prod": "ng build --prod",
+    "fb-deploy": "npm run build-prod && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -30,6 +31,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-plotly.js": "^4.0.4",
     "bootstrap": "^4.4.1",
+    "firebase-tools": "^10.3.0",
     "plotly.js-dist-min": "^2.8.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -39,7 +41,6 @@
     "@angular-devkit/build-angular": "~0.1100.4",
     "@angular/cli": "~11.0.4",
     "@angular/compiler-cli": "~11.0.4",
-    "@coding-for-science/frontend-shared-configs": "^0.1.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "@types/plotly.js-dist-min": "^2.3.0",

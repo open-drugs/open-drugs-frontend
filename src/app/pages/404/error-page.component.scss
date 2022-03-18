@@ -1,1 +1,13 @@
 @import '../../../assets/styles/dependencies';
+
+.wrapper {
+  height: 100%;
+  background-color: $color-white;
+  padding: $gutter 0;
+}
+
+.grid-container {
+  align-items: center;
+  text-align: center;
+  font-size: 2em;
+}

@@ -1,0 +1,35 @@
+@mixin mat-select-style() {
+  font-size: 11px; // regulates select size
+
+  mat-form-field {
+    width: 100%;
+    max-width: 100%;
+    .mat-select {
+      font-size: 1.23em;
+      margin: -2.2em 0;
+    }
+
+    .mat-form-field-prefix {
+      top: -0.5em;
+    }
+
+    .mat-form-field-underline {
+      display: none;
+    }
+
+    .mat-form-field-flex {
+      border-radius: $border-radius-s;
+      background-color: $color-gray-200;
+    }
+
+    .mat-select-arrow {
+      margin-top: 0.6em !important;
+    }
+
+    .mat-form-field-label-wrapper {
+      top: -1em;
+      padding-top: 0;
+      font-size: 1.23em;
+    }
+  }
+}

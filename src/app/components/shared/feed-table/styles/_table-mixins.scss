@@ -1,44 +1,5 @@
 @import "../../../../../assets/styles/dependencies";
 
-@mixin table-cell {
-  .table-cell {
-    font-size: $font-size;
-    text-align: left;
-    vertical-align: middle;
-    padding: 8px 10px 10px 10px;
-    border-bottom: 2px solid $color-borders;
-    font-weight: $font-weight-regular;
-
-    &--checkbox {
-      width: 4%;
-    }
-
-    &--temp {
-      width: 5%;
-    }
-
-    &--strain,
-    &--dosage {
-      width: 6%;
-    }
-
-    &--medium,
-    &--maximum,
-    &--average {
-      width: 8%;
-    }
-
-    &--drug,
-    &--sex {
-      width: 14%;
-    }
-
-    &--row-data,
-    &--group {
-      width: 10%;
-    }
-  }
-}
 
 
 

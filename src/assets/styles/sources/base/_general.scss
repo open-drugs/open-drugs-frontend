@@ -7,7 +7,7 @@ body {
   height: 100%;
   width: 100%;
   min-width: $smartphone + ($gutter * 2);
-  padding: ($header-height + $gutter) $gutter 0 $gutter;
+  padding: $header-height 0 0 0;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -17,11 +17,6 @@ body {
 
 .wrapper {
   width: 100%;
-}
-
-.container {
-  text-align: left;
-  position: relative;
 }
 
 table {

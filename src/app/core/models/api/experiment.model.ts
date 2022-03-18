@@ -1,9 +1,6 @@
-type float = number;
+// TODO: Check if out-of-date
 
-type Item = {
-  id: number;
-  name: string;
-}
+import { Item, Float } from './basic-types.model';
 
 export interface Experiment {
   id: number;
@@ -14,9 +11,9 @@ export interface Experiment {
   };
   sex: string;
   lifespan: {
-    med: float;
-    avg: float;
-    max: float;
+    med: Float;
+    avg: Float;
+    max: Float;
     unit: string
   };
   doi: string;

@@ -1,21 +1,104 @@
-<div class="filters-panel" [formGroup]="filterForm">
+<form class="filters-panel" [formGroup]="filtersForm">
+  <div class="filters-panel__select">
+    <mat-form-field appearance="fill">
+      <mat-label>Intervention type</mat-label>
+      <mat-select formControlName="interventionTypeSelect"
+                  [(ngModel)]="selectedInterventionType"
+                  [compareWith]="compareSelectValues"
+                  (selectionChange)="apply('interventionType', $event, pickInterventions)">
+        <mat-option [value]="">not set</mat-option>
+        <mat-option *ngFor="let i of interventionTypes"
+                    [value]="i.name">{{ i.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-   <div class="filters-panel__filter">
-     <mat-form-field appearance="fill">
-       <mat-label>Year</mat-label>
-       <input formControlName="year" matInput placeholder="Year" type="number">
-     </mat-form-field>
-   </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Intervention type</mat-label>
+      <mat-select formControlName="interventionsSelect"
+                  multiple
+                  [disabled]="interventions.length === 0"
+                  [(ngModel)]="selectedInterventions"
+                  [compareWith]="compareSelectValues"
+                  (selectionChange)="apply('intervention', $event)">
+        <mat-option *ngFor="let i of interventions"
+                    [value]="i.name">{{ i.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-   <div class="filters-panel__filter">
-     <mat-form-field appearance="fill">
-       <mat-label>Sex</mat-label>
-       <mat-select formControlName="sex" disableOptionCentering >
-         <mat-option value="">All</mat-option>
-         <mat-option value="male">Male</mat-option>
-         <mat-option value="female">Female</mat-option>
-       </mat-select>
-     </mat-form-field>
-   </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Species</mat-label>
+      <mat-select formControlName="speciesSelect"
+                  [(ngModel)]="selectedSpecies"
+                  [compareWith]="compareSelectValues"
+                  (selectionChange)="apply('species', $event)">
+        <mat-option [value]="">not set</mat-option>
+        <mat-option *ngFor="let i of species"
+                    [value]="i.name">{{ i.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-</div>
+  <div class="filters-panel__slider">
+    <label>Average lifespan change (%)</label>
+    <div class="slider__range-wrapper">
+      <app-slider
+        [minValue]="avgLifespanChangePercent.min"
+        [maxValue]="avgLifespanChangePercent.max"
+        [sliderStep]="slidersStep"
+        [minCurrentValue]="avgLifespanChangePercent.currentMin"
+        [maxCurrentValue]="avgLifespanChangePercent.currentMax"
+        (minCurrentValueChange)="applyRange('avgLifespanChangePercent', avgLifespanChangePercent, 'min', $event)"
+        (maxCurrentValueChange)="applyRange('avgLifespanChangePercent', avgLifespanChangePercent, 'max', $event)"
+      ></app-slider>
+    </div>
+    <div class="slider__fields-row">
+      <input
+        matInput
+        type="text"
+        formControlName="avgLifespanChangePercentMinInput"
+        class="field"
+        readonly
+        [(ngModel)]="avgLifespanChangePercent.currentMin">
+
+      <input
+        matInput
+        type="text"
+        formControlName="avgLifespanChangePercentMaxInput"
+        class="field"
+        readonly
+        [(ngModel)]="avgLifespanChangePercent.currentMax">
+    </div>
+  </div>
+
+  <div class="filters-panel__slider">
+    <label>Max lifespan change (%)</label>
+    <div class="slider__range-wrapper">
+      <app-slider
+        [minValue]="maxLifespanChangePercent.min"
+        [maxValue]="maxLifespanChangePercent.max"
+        [sliderStep]="slidersStep"
+        [minCurrentValue]="maxLifespanChangePercent.currentMin"
+        [maxCurrentValue]="maxLifespanChangePercent.currentMax"
+        (minCurrentValueChange)="applyRange('maxLifespanChangePercent', maxLifespanChangePercent, 'min', $event)"
+        (maxCurrentValueChange)="applyRange('maxLifespanChangePercent', maxLifespanChangePercent, 'max', $event)"
+      ></app-slider>
+    </div>
+    <div class="slider__fields-row">
+      <input
+        matInput
+        type="text"
+        formControlName="maxLifespanChangePercentMinInput"
+        class="field"
+        readonly
+        [(ngModel)]="maxLifespanChangePercent.currentMin">
+
+      <input
+        matInput
+        type="text"
+        formControlName="maxLifespanChangePercentMaxInput"
+        class="field"
+        readonly
+        [(ngModel)]="maxLifespanChangePercent.currentMax">
+    </div>
+  </div>
+</form>

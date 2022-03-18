@@ -7,35 +7,42 @@
         color="primary"></mat-checkbox>
     </div>
   </td>
-  <td class="table-cell table-cell--drug">
+  <td class="table-cell table-cell--drug table-cell--medium">
     <div>{{drug.intervention.drugIntervention?.drug?.name || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--sex">
+  <td class="table-cell table-cell--sex table-cell--small">
     <div>{{drug.sex || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--strain">
+  <td class="table-cell table-cell--strain table-cell--medium">
     <div>{{drug.strain.name || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--dosage">
     <div>{{drug.intervention.drugIntervention?.dosage || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--medium">
+  <td class="table-cell table-cell--medium table-cell--center">
     <div>{{drug.lifespan.med || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--maximum">
+  <td class="table-cell table-cell--maximum table-cell--center">
     <div>{{drug.lifespan.max || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--average">
+  <td class="table-cell table-cell--average table-cell--center">
     <div>{{drug.lifespan.avg || '\t&#8212;'}}</div>
     <div class="minus"></div>
   </td>
   <td class="table-cell table-cell--row-data">
-    <div>Row data</div>
+    <div>
+      <a href="#"
+         class="link"
+         mat-icon-button
+      >
+        <mat-icon [inline]="true">download</mat-icon>
+      </a>
+  </div>
   </td>
   <td class="table-cell table-cell--group">
     <div>Group</div>
   </td>
-  <td class="table-cell table-cell--temp">
+  <td class="table-cell table-cell--nowrap table-cell--temp">
     <div *ngIf="drug.conditions.temperature?.from !== drug.conditions.temperature?.to"
     >{{drug.conditions.temperature?.from}} -  {{drug.conditions.temperature?.to}} &#8451;</div>
   </td>

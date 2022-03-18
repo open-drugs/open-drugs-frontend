@@ -5,9 +5,10 @@
   </thead>
   <tbody>
   <ng-container *ngIf="data && data.length">
-    <app-feed-table-row
-      *ngFor="let row of data"
-      [data]="row"></app-feed-table-row>
+    <tr *ngFor="let row of data">
+      <app-feed-table-row
+        [data]="row"></app-feed-table-row>
+    </tr>
   </ng-container>
   </tbody>
 </table>

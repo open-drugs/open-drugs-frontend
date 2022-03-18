@@ -1,0 +1,42 @@
+$table-cell-sizes: (
+  'small': 5ch,
+  'medium': 15ch,
+  'large': 25ch
+);
+
+$table-cell-directions: ('left', 'center', 'right');
+
+@mixin table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@mixin table-cell {
+  .table-cell {
+    font-size: $font-size;
+    text-align: left;
+    vertical-align: middle;
+    padding: 8px 10px 10px 10px;
+    border-bottom: 1px solid $color-borders;
+    font-weight: $font-weight-regular;
+    word-wrap: break-word;
+
+    @each $size, $value in $table-cell-sizes {
+      &--#{$size} {
+        & > div {
+          min-width: $value;
+        }
+      }
+    }
+
+    @each $direction in $table-cell-directions {
+      &--#{$direction} {
+        text-align: unquote($direction);
+      }
+    }
+
+    &--nowrap {
+      white-space: nowrap;
+    }
+  }
+}
