@@ -23,7 +23,6 @@ export interface Experiment {
   interventionType: Item;
   survivalDataAvailable: boolean;
   rawDataAvailable: boolean;
-  checked: boolean;
   intervention: {
     drugIntervention: {
       drug: Item,

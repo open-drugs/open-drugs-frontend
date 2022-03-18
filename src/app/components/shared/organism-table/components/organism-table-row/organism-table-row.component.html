@@ -2,7 +2,7 @@
   <td class="table-cell table-cell--checkbox">
     <div>
       <mat-checkbox
-        [checked]="drug.checked"
+        [checked]="checkedIds.includes(drug.id)"
         (change)="checkboxChanges(drug.id)"
         color="primary"></mat-checkbox>
     </div>
