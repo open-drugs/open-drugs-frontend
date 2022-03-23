@@ -2,7 +2,7 @@
   <td class="table-cell table-cell--checkbox">
     <div>
       <mat-checkbox
-        [checked]="checkedIds.includes(drug.id)"
+        [checked]="selectedIds.includes(drug.id)"
         (change)="checkboxChanges(drug.id)"
         color="primary"></mat-checkbox>
     </div>
@@ -37,7 +37,7 @@
       >
         <mat-icon [inline]="true">download</mat-icon>
       </a>
-  </div>
+    </div>
   </td>
   <td class="table-cell table-cell--group">
     <div>Group</div>

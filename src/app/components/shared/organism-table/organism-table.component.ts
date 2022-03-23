@@ -16,7 +16,7 @@ export class OrganismTableComponent implements OnInit, OnDestroy {
   @Output() checkedIds: EventEmitter<number[]> = new EventEmitter<number[]>();
 
   public selectAll = false;
-
+  public selectedIds: number[] = [];
   private unsubscribe$ = new Subject();
 
   constructor(
@@ -43,6 +43,7 @@ export class OrganismTableComponent implements OnInit, OnDestroy {
       )
       .subscribe((checkedIds) => {
         this.selectAll = checkedIds.length > 0 && checkedIds.length === this.drugsData.length;
+        this.selectedIds = checkedIds;
         this.checkedIds.emit(checkedIds);
       });
   }

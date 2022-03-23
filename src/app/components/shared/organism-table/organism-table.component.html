@@ -11,6 +11,7 @@
     <app-organism-table-row
       *ngFor="let drug of drugsData"
       [drug]="drug"
+      [selectedIds]="selectedIds"
       (drugId)="checkboxStatesChange($event)"></app-organism-table-row>
   </ng-container>
   </tbody>
