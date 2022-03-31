@@ -20,4 +20,3 @@ export type FilterTypes =
   | 'avgLifespan'
   | 'maxLifespan'
   | 'year';
-

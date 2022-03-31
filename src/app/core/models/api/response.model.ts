@@ -16,4 +16,3 @@ export interface Pagination {
   pageSize: number;
   pagesTotal?: number;
 }
-

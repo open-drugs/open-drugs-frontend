@@ -14,7 +14,7 @@ export interface Experiment {
     med: Float;
     avg: Float;
     max: Float;
-    unit: string
+    unit: string;
   };
   doi: string;
   year: number;
@@ -25,35 +25,34 @@ export interface Experiment {
   rawDataAvailable: boolean;
   intervention: {
     drugIntervention: {
-      drug: Item,
-      dosage: string,
+      drug: Item;
+      dosage: string;
       delivery: {
-        option: string,
-        mean: string,
-        regime: string
-      },
+        option: string;
+        mean: string;
+        regime: string;
+      };
       exposure: {
-        startLifespanPercent: number,
-        endLifespanPercent: number,
-        startingPoint: string
-      }
-    },
-    dietIntervention: any
+        startLifespanPercent: number;
+        endLifespanPercent: number;
+        startingPoint: string;
+      };
+    };
+    dietIntervention: any;
   };
   conditions: {
-    feed: string,
+    feed: string;
     temperature: {
-      from: string,
-      to: number
-    },
+      from: string;
+      to: number;
+    };
     light: {
-      light: number,
-      dark: string
-    },
+      light: number;
+      dark: string;
+    };
     density: {
-      count: number,
-      container: number
-    }
+      count: number;
+      container: number;
+    };
   };
 }
-

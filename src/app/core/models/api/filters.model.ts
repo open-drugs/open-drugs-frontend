@@ -1,6 +1,6 @@
 import { FilterRange, Item } from './basic-types.model';
 
-export type Intervention = Partial<Item> & { type: string; };
+export type Intervention = Partial<Item> & { type: string };
 
 export interface Filters {
   interventionType: {
