@@ -10,6 +10,8 @@ import { PlotDataService } from '../../../core/services/api/plot-data.service';
 import { Filters } from '../../../core/models/api/filters.model';
 import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-params.model';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
+import { OrganismTableService } from '../../../components/shared/organism-table/services/organism-table.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 
 @Component({
   selector: 'app-species-page',
@@ -42,6 +44,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   };
   public windowSizeChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  private storageIds: number[];
   private filterParams: Partial<FilterParamsModel>;
   private unsubscribe$ = new Subject();
 
@@ -50,9 +53,13 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     private filterParametersService: FilterParametersService,
     private experimentApiService: ExperimentApiService,
     private plotDataService: PlotDataService,
+    private drugTableService: OrganismTableService,
+    private localStorageService: LocalStorageService,
     private readonly cdRef: ChangeDetectorRef,
   ) {
     super(windowWidthService);
+
+    this.storageIds = this.localStorageService.getStorageValue('checkedIds');
   }
 
   ngOnInit(): void {
@@ -76,6 +83,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
 
   // TODO: WIP
   public retrieveAndSetParams(next?: Function) {
+    this.storageIds = this.localStorageService.getStorageValue('checkedIds');
     this.filterParametersService.getFiltersState()
       .pipe(
         takeUntil(this.unsubscribe$),
@@ -107,6 +115,8 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       this.drugsData = res.items;
+      const itemIds = [res.items[0].id, res.items[1].id];
+      this.drugTableService.setCheckedIds(this.storageIds.length ? this.storageIds : itemIds);
       console.log(res.items);
       this.filtersOptions = res.filters;
       this.drugsPageOptions = res.options; // TODO: pagination
@@ -120,6 +130,8 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   }
 
   setPlotData(drugIds: number[]): void {
+    this.localStorageService.setStorage('checkedIds', drugIds);
+
     if (drugIds.length) {
       this.plotDataService.getPlotDataById(drugIds)
         .pipe()
