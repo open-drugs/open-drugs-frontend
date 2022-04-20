@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Experiment } from '../../../../core/models/api/experiment.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class OrganismTableService {
-  private checkedIds: number[] = [123];
+  private checkedIds: number[] = [];
   private checkedExperimentIds = new BehaviorSubject<number[]>(this.checkedIds);
 
   constructor() { }
@@ -26,6 +28,11 @@ export class OrganismTableService {
   selectAllDrugs(drugs: Experiment[], selected: boolean): void {
     this.checkedIds = selected ? drugs.map((drug) => drug.id) : [];
     this.updateIds(this.checkedIds);
+  }
+
+  setCheckedIds(ids: number[]): void {
+    this.checkedIds = ids;
+    this.updateIds(ids);
   }
 
   private updateIds(ids: number[]): void {
