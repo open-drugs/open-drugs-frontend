@@ -13,6 +13,8 @@ import {
   FilterStateModel,
 } from '../../../core/models/filter-response.model';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
+import { OrganismTableService } from '../../../components/shared/organism-table/services/organism-table.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -49,6 +51,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     },
   };
   public windowSizeChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public defaultCheckedIds: number[];
 
   private filterParams: FilterStateModel;
   private unsubscribe$ = new Subject();
@@ -58,6 +61,8 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     private filterParametersService: FilterParametersService,
     private experimentApiService: ExperimentApiService,
     private plotDataService: PlotDataService,
+    private organismTableService: OrganismTableService,
+    private localStorageService: LocalStorageService,
   ) {
     super(windowWidthService);
   }
@@ -79,11 +84,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
         orientation: this.isMobile ? 'h' : '',
       };
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   // tslint:disable-next-line:ban-types
@@ -111,6 +111,22 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     }
   }
 
+  private setCheckedExperiments(ids: number[]) {
+    const storageIds = this.localStorageService.getStorageValue('checkedIds');
+    const idArr = storageIds?.length > 0
+        ? storageIds
+        : ids;
+    this.organismTableService.setCheckedIds(idArr);
+    this.organismTableService.getCheckedIds()
+      .pipe(
+        takeUntil(this.unsubscribe$),
+      )
+      .subscribe((checkedIds) => {
+        this.defaultCheckedIds = checkedIds;
+      });
+
+  }
+
   public getExperimentsData(): void {
     this.loaderVisible = true;
     const filterParams = this.filterParams ? this.filterParams : {};
@@ -124,6 +140,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       this.loaderVisible = false;
       if (res.items.length > 0) {
         this.showFeed = true;
+        this.setCheckedExperiments([res.items[0].id, res.items[1].id, res.items[2].id]);
         this.errorMessage = '';
       } else {
         this.showFeed = false;
@@ -135,9 +152,18 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
   }
 
-  public setPlotData(drugIds: number[]): void {
-    if (drugIds.length) {
-      this.plotDataService.getPlotDataById(drugIds)
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  public setPlotData(experimentIds: number[]): void {
+    console.log('setPlotData', experimentIds);
+    this.localStorageService.setStorage('checkedIds', experimentIds);
+    this.setCheckedExperiments(experimentIds);
+
+    if (experimentIds.length) {
+      this.plotDataService.getPlotDataById(experimentIds)
         .pipe()
         .subscribe((data) => {
           this.plotLayout.title = data.options?.chartsCategory;

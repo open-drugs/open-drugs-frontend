@@ -12,6 +12,7 @@ import { Experiment } from '../../../core/models/api/experiment.model';
 })
 export class OrganismTableComponent implements OnInit, OnDestroy {
   @Input() experimentsData: Experiment[];
+  @Input() defaultCheckedIds: number[] = [];
   @Input() layout: 'table' | 'cards' = 'table';
   @Output() checkedIds: EventEmitter<number[]> = new EventEmitter<number[]>();
 
@@ -20,24 +21,29 @@ export class OrganismTableComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
 
   constructor(
-    private drugTableService: OrganismTableService,
+    private organismTableService: OrganismTableService,
   ) {
   }
 
   ngOnInit(): void {
-    this.getCheckedDrugs();
+    if (this.defaultCheckedIds.length !== 0) {
+      this.selectedIds = this.defaultCheckedIds;
+      this.checkedIds.emit(this.defaultCheckedIds);
+    }
+    this.getCheckedRows();
   }
 
   public selectAllState(event: boolean): void {
-    this.drugTableService.selectAllDrugs(this.experimentsData, event);
+    this.organismTableService.selectAllDrugs(this.experimentsData, event);
   }
 
   public checkboxStatesChange(event: number): void {
-    this.drugTableService.updateCheckedDrugs(this.experimentsData, event);
+    this.organismTableService.updateCheckedDrugs(this.experimentsData, event);
   }
 
-  private getCheckedDrugs(): void {
-    this.drugTableService.getCheckedIds()
+  // TODO: transfer subscription into a parent component
+  private getCheckedRows(): void {
+    this.organismTableService.getCheckedIds()
       .pipe(
         takeUntil(this.unsubscribe$),
       )

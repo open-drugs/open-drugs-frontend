@@ -25,6 +25,7 @@
           *ngIf="showFeed"
           [experimentsData]="experimentsList"
           [layout]="feedLayout"
+          [defaultCheckedIds]="defaultCheckedIds"
           (checkedIds)="setPlotData($event)">
         </app-organism-table>
 
