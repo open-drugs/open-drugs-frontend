@@ -34,7 +34,7 @@ $color-gray-300: #e0e0e0;
 $color-gray-200: #f7f7f8;
 $color-gray-100: #fafafa;
 $color-white: #fff;
-$color-primary-50: $color-white;
+$color-primary-50: #f4f8fd;
 $color-primary-100: #dce9fa;
 $color-primary-200: #9eb9f4;
 $color-primary-300: #7a92f1;
@@ -47,7 +47,7 @@ $color-primary-900: #0854c5;
 
 // Material
 $custom-palette: (
-        50: $color-primary-50,
+        50: $color-primary-100,
         100: $color-primary-100,
         200: $color-primary-200,
         300: $color-primary-300,

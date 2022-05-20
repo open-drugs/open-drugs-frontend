@@ -8,8 +8,6 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./language.component.scss'],
 })
 export class LanguageComponent {
-  @Input() theme: 'light' | 'dark' = 'dark';
-
   public currentIndex = environment.languages.indexOf(this.translate.currentLang);
 
   constructor(
