@@ -13,8 +13,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$open-drugs-frontend-primary: mat-palette($palette-blue, 400, 500, 600);
-$open-drugs-frontend-accent: mat-palette($mat-yellow, A200, A100, A400);
+$open-drugs-frontend-primary: mat-palette($custom-palette, 300, 600, 700);
+$open-drugs-frontend-accent: mat-palette($custom-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $open-drugs-frontend-warn: mat-palette($mat-red);

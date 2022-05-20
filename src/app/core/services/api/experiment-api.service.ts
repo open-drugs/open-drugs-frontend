@@ -15,7 +15,11 @@ export class ExperimentApiService {
     private http: HttpClient
   ) { }
 
-  getExperiments(params?: any): Observable<ApiResponse<Experiment>> {
+  getExperiments(params?: any, page?: number): Observable<ApiResponse<Experiment>> {
+    if (params && page) {
+      params.page = page;
+    }
+
     return this.http.get<ApiResponse<Experiment>>( `${this.url}api/experiment/search`, {params});
   }
 

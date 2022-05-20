@@ -24,7 +24,7 @@ $l: 'language-switcher';
   &--dark {
     .#{$l}__inner {
       background-color: $background-color;
-      color: $color-blue-400;
+      color: $color-primary-400;
     }
   }
 }

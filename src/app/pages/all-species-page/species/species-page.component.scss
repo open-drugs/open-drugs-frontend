@@ -13,16 +13,70 @@
 }
 
 .species {
+  @mixin panel {
+    background: $color-white;
+    border: 1px solid $color-borders;
+    border-radius: 5px;
+  }
+
   &__title {
     font-size: 1.8em;
     font-weight: $font-weight-medium;
   }
 
   &__plot {
-    background: $color-white;
-    box-shadow: 0 3px 3px 0 rgba($color-black, 0.15);
-    border-radius: 5px;
+    @include panel;
     overflow: hidden;
     margin-bottom: 20px;
+    padding: $padding-l 0;
+  }
+
+  &__feed {
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba($color-white, .75);
+
+      &__spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 0;
+        transform: translate(-50%, -50%) translateZ(0);
+      }
+    }
+  }
+
+  &__error {
+    @include panel;
+    display: block;
+    width: 100%;
+    padding: 60px $padding-m;
+    font-size: 1.2em;
+    font-weight: $font-weight-medium;
+    text-align: center;
+    margin-top: $padding-m;
+  }
+
+  &__paginator {
+    margin-top: $padding-s;
+  }
+
+  &__filters {
+    width: 100%;
+    display: inline-block;
+
+    &--sticky {
+      position: sticky;
+      top: $header-height + $padding-l;
+    }
   }
 }
+
+

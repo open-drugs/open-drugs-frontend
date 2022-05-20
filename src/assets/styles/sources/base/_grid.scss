@@ -9,11 +9,12 @@
   height: 100%;
   width: calc(100% - #{$gutter * 2});
   min-width: $smartphone - ($gutter * 2);
-  max-width: $widescreen - ($gutter * 2);
+  max-width: 1252px;
   margin-right: auto;
   margin-left: auto;
 
   .grid-container__sidebar {
+    position: relative;
     grid-area: sidebar;
   }
 

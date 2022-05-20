@@ -8,8 +8,21 @@
 
 .table-header {
   .table-cell {
+    position: relative;
     color: $color-gray-700;
     border-width: 2px;
+
+    & > div {
+      padding-top: 1.5ch;
+    }
+
+    &--outset {
+      span {
+        position: absolute;
+        top: 0;
+        white-space: nowrap;
+      }
+    }
   }
 }
 

@@ -1,15 +1,15 @@
 <mat-toolbar
   class="header"
-  color="primary">
+  color="secondary">
   <div class="header__content">
     <a href="/"
-       class="logo">
-    </a>
+       class="logo"
+       matRipple
+    ></a>
 
-    <ul class="menu" *ngIf="!isMobile">
+    <ul class="menu __hidden">
       <li class="menu__item">
         <a routerLink="/">
-          Genomics
         </a>
       </li>
       <li class="menu__item">

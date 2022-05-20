@@ -23,48 +23,44 @@ $font-weight-black: 900;
 
 // COLORS
 // Palette
-$color-black: #000;
+$color-black: #0e0e11;
 $color-gray-900: #27292e;
-$color-gray-800: #666E7E;
-$color-gray-700: #808080;
-$color-gray-600: #c0c0c0;
-$color-gray-500: #c4c4c4;
-$color-gray-400: #D3D3D3;
-$color-gray-300: #ddd;
-$color-gray-200: #F0F0F0;
-$color-gray-100: #FAFAFA;
+$color-gray-800: #2e3038;
+$color-gray-700: #7d7c83;
+$color-gray-600: #b1b0b5;
+$color-gray-500: #bebdc1;
+$color-gray-400: #d3d3d3;
+$color-gray-300: #e0e0e0;
+$color-gray-200: #f7f7f8;
+$color-gray-100: #fafafa;
 $color-white: #fff;
-$color-orange-900: #C88142;
-$color-orange-500: #FFB334;
-$color-orange-200: #FFC769;
-$color-orange-100: #FFEDCF;
-$color-blue-50: #f2f7fd;
-$color-blue-100: #dce9fa;
-$color-blue-200: #9eb9f4;
-$color-blue-300: #7a92f1;
-$color-blue-400: #4c79ee;
-$color-blue-500: #366EE5;
-$color-blue-600: #3062ce;
-$color-blue-700: #2957b8;
-$color-blue-800: #244ca2;
-$color-blue-900: #1e428e;
+$color-primary-50: $color-white;
+$color-primary-100: #dce9fa;
+$color-primary-200: #9eb9f4;
+$color-primary-300: #7a92f1;
+$color-primary-400: #4c79ee;
+$color-primary-500: #3d72fd;
+$color-primary-600: #2377f6;
+$color-primary-700: #0066ff;
+$color-primary-800: #005ce6;
+$color-primary-900: #0854c5;
 
 // Material
-$palette-blue: (
-        50: $color-blue-50,
-        100: $color-blue-100,
-        200: $color-blue-200,
-        300: $color-blue-300,
-        400: $color-blue-400,
-        500: $color-blue-500,
-        600: $color-blue-600,
-        700: $color-blue-700,
-        800: $color-blue-800,
-        900: $color-blue-900,
-        A100: #82b1ff,
-        A200: #448aff,
-        A400: #2979ff,
-        A700: #2962ff,
+$custom-palette: (
+        50: $color-primary-50,
+        100: $color-primary-100,
+        200: $color-primary-200,
+        300: $color-primary-300,
+        400: $color-primary-400,
+        500: $color-primary-500,
+        600: $color-primary-600,
+        700: $color-primary-700,
+        800: $color-primary-800,
+        900: $color-primary-900,
+        A100: #FFEDCF,
+        A200: #FFB334,
+        A400: #FFC769,
+        A700: #C88142,
         contrast: (
                 50: $color-black,
                 100: $color-black,
@@ -84,8 +80,8 @@ $palette-blue: (
 );
 
 // By function
-$color-general: $color-blue-300;
-$color-borders: $color-gray-600;
+$color-general: $color-primary-700;
+$color-borders: $color-gray-300;
 
 // Paths
 $path-images: '/assets/images';
@@ -102,3 +98,6 @@ $path-font-roboto-medium: $path-fonts + '/roboto/medium.woff2';
 $path-font-roboto-medium-woff: $path-fonts + '/roboto/medium.woff';
 $path-font-roboto-bold: $path-fonts + '/roboto/bold.woff2';
 $path-font-roboto-bold-woff: $path-fonts + '/roboto/bold.woff';
+
+// SHADOWS
+$shadow-for-panel: 0 3px 12px 0 rgb($color-gray-400, .75), 0 1px 4px 0 $color-gray-200;

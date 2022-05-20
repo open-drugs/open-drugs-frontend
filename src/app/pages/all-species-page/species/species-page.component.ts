@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { WindowWidth } from '../../../core/utils/window-width';
@@ -8,8 +8,12 @@ import { WindowWidthService } from '../../../core/services/browser/window-width.
 import { ExperimentApiService } from '../../../core/services/api/experiment-api.service';
 import { PlotDataService } from '../../../core/services/api/plot-data.service';
 import { Filters } from '../../../core/models/api/filters.model';
-import { FilterParamsModel, FilterTypes } from '../../../core/models/filter-params.model';
+import {
+  FilterQueryParams,
+  FilterStateModel,
+} from '../../../core/models/filter-response.model';
 import { FilterParametersService } from '../../../core/services/filter-parameters.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-species-page',
@@ -17,10 +21,14 @@ import { FilterParametersService } from '../../../core/services/filter-parameter
   styleUrls: ['./species-page.component.scss'],
 })
 export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestroy {
-  public drugsData: Experiment[] = [];
+  public experimentsList: Experiment[] = [];
   public filtersOptions: Filters;
-  public drugsPageOptions: PageOptions;
+  public experimentsPageOptions: PageOptions;
+  public loaderVisible = true;
+  public showFeed: boolean;
+  public errorMessage = '';
   public feedLayout: 'table' | 'cards';
+  public page = 1;
   public plotData: any[] = [];
   public plotLayout = {
     autosize: true,
@@ -37,12 +45,12 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
       autorange: true,
       ticks: 'outside',
       zeroline: false,
-      linewidth: 2
+      linewidth: 2,
     },
   };
   public windowSizeChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private filterParams: Partial<FilterParamsModel>;
+  private filterParams: FilterStateModel;
   private unsubscribe$ = new Subject();
 
   constructor(
@@ -50,7 +58,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     private filterParametersService: FilterParametersService,
     private experimentApiService: ExperimentApiService,
     private plotDataService: PlotDataService,
-    private readonly cdRef: ChangeDetectorRef,
   ) {
     super(windowWidthService);
   }
@@ -74,26 +81,29 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
   }
 
-  // TODO: WIP
-  public retrieveAndSetParams(next?: Function) {
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  // tslint:disable-next-line:ban-types
+  public retrieveAndSetParams(next?: Function): void {
     this.filterParametersService.getFiltersState()
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
       const params = res;
-      console.log(params);
       for (const key in params) {
         if (params.hasOwnProperty(key)) {
-          if (params[key as FilterTypes]?.length === 0) {
-            delete params[key as FilterTypes];
-          } else if (params[key as FilterTypes] === undefined) {
-            delete params[key as FilterTypes];
+          if (params[key as FilterQueryParams]?.length === 0) {
+            delete params[key as FilterQueryParams];
+          } else if (params[key as FilterQueryParams] === undefined) {
+            delete params[key as FilterQueryParams];
           }
         }
       }
 
       this.filterParams = params;
-        console.log('params: ', this.filterParams);
     });
 
     if (next) {
@@ -102,24 +112,30 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
   }
 
   public getExperimentsData(): void {
-    this.experimentApiService.getExperiments(this.filterParams ? this.filterParams : null)
+    this.loaderVisible = true;
+    const filterParams = this.filterParams ? this.filterParams : {};
+    this.experimentApiService.getExperiments(filterParams, this.page)
       .pipe(
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
-      this.drugsData = res.items;
-      console.log(res.items);
+      this.experimentsList = res.items;
       this.filtersOptions = res.filters;
-      this.drugsPageOptions = res.options; // TODO: pagination
+      this.experimentsPageOptions = res.options;
+      this.loaderVisible = false;
+      if (res.items.length > 0) {
+        this.showFeed = true;
+        this.errorMessage = '';
+      } else {
+        this.showFeed = false;
+      }
+    },
+      (error) => {
+        this.showFeed = false;
+        this.errorMessage = error.message;
     });
-    // TODO: Error handling
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  setPlotData(drugIds: number[]): void {
+  public setPlotData(drugIds: number[]): void {
     if (drugIds.length) {
       this.plotDataService.getPlotDataById(drugIds)
         .pipe()
@@ -131,13 +147,21 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
               name: plot.title,
               mode: plot.coordinates.mode,
               type: 'scatter',
-              x: plot.coordinates.x,
+              x: plot.coordinates.x.reverse(),
               y: plot.coordinates.y,
             };
           });
+          this.loaderVisible = false;
         });
     } else {
       this.plotData = [];
+    }
+  }
+
+  public pageEventHandler(event: PageEvent): void {
+    if (this.page < event.length) {
+      this.page = this.page + 1;
+      this.getExperimentsData();
     }
   }
 }

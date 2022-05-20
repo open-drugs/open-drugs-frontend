@@ -7,19 +7,19 @@
   ></app-organism-table-header>
   </thead>
   <tbody>
-  <ng-container *ngIf="drugsData && drugsData.length">
+  <ng-container *ngIf="experimentsData && experimentsData.length">
     <app-organism-table-row
-      *ngFor="let drug of drugsData"
-      [drug]="drug"
+      *ngFor="let experiment of experimentsData"
+      [experiment]="experiment"
       [selectedIds]="selectedIds"
-      (drugId)="checkboxStatesChange($event)"></app-organism-table-row>
+      (experimentId)="checkboxStatesChange($event)"></app-organism-table-row>
   </ng-container>
   </tbody>
 </table>
 
 <section *ngIf="layout === 'cards'">
-  <ng-container *ngIf="drugsData && drugsData.length">
-    <mat-card *ngFor="let drug of drugsData"
+  <ng-container *ngIf="experimentsData && experimentsData.length">
+    <mat-card *ngFor="let drug of experimentsData"
               class="card">
       <mat-card-title>
         {{ drug.intervention.drugIntervention?.drug?.name }}
