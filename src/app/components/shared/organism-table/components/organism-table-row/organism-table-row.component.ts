@@ -7,13 +7,13 @@ import { Experiment } from '../../../../../core/models/api/experiment.model';
   styleUrls: ['./organism-table-row.component.scss']
 })
 export class OrganismTableRowComponent {
-  @Input() drug: Experiment;
+  @Input() experiment: Experiment;
   @Input() selectedIds: number[];
-  @Output() drugId: EventEmitter<number> = new EventEmitter<number>();
+  @Output() experimentId: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
   public checkboxChanges(id: number): void {
-    this.drugId.emit(id);
+    this.experimentId.emit(id);
   }
 }

@@ -7,19 +7,21 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './header.component';
 import { LanguageComponent } from '../../language/language.component';
 import {RouterModule} from "@angular/router";
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     LanguageComponent
   ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        MatMenuModule,
-        TranslateModule,
-        RouterModule
-    ],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    TranslateModule,
+    RouterModule,
+    MatRippleModule
+  ],
   exports: [
     HeaderComponent,
   ],

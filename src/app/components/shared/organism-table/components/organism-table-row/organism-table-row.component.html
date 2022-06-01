@@ -2,33 +2,55 @@
   <td class="table-cell table-cell--checkbox">
     <div>
       <mat-checkbox
-        [checked]="selectedIds.includes(drug.id)"
-        (change)="checkboxChanges(drug.id)"
+        [checked]="selectedIds.includes(experiment.id)"
+        (change)="checkboxChanges(experiment.id)"
         color="primary"></mat-checkbox>
     </div>
   </td>
   <td class="table-cell table-cell--drug table-cell--medium">
-    <div>{{drug.intervention.drugIntervention?.drug?.name || '\t&#8212;'}}</div>
+    <div>{{experiment.intervention.drugIntervention?.drug?.name || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--sex table-cell--small">
-    <div>{{drug.sex || '\t&#8212;'}}</div>
+    <div>{{experiment.sex || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--strain table-cell--medium">
-    <div>{{drug.strain.name || '\t&#8212;'}}</div>
+    <div>{{experiment.strain.name || '\t&#8212;'}}</div>
   </td>
   <td class="table-cell table-cell--dosage">
-    <div>{{drug.intervention.drugIntervention?.dosage || '\t&#8212;'}}</div>
+    <div>{{experiment.intervention.drugIntervention?.dosage || '\t&#8212;'}}</div>
   </td>
-  <td class="table-cell table-cell--medium table-cell--center">
-    <div>{{drug.lifespan.med || '\t&#8212;'}}</div>
+
+  <td class="table-cell table-cell--left">
+    <div>{{experiment.lifespanChangePercent.min | number: '1.0-0' || '\t&#8212;'}}%</div>
   </td>
-  <td class="table-cell table-cell--maximum table-cell--center">
-    <div>{{drug.lifespan.max || '\t&#8212;'}}</div>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespanChangePercent.med | number: '1.0-0' || '\t&#8212;'}}%</div>
   </td>
-  <td class="table-cell table-cell--average table-cell--center">
-    <div>{{drug.lifespan.avg || '\t&#8212;'}}</div>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespanChangePercent.avg | number: '1.0-0' || '\t&#8212;'}}%</div>
     <div class="minus"></div>
   </td>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespanChangePercent.max | number: '1.0-0' || '\t&#8212;'}}%</div>
+  </td>
+
+  <td class="table-cell table-cell--left">
+    <div>{{experiment.lifespan.min | number: '1.0-0' || '\t&#8212;'}} {{experiment.lifespan.unit}}</div>
+  </td>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespan.med | number: '1.0-0' || '\t&#8212;'}} {{experiment.lifespan.unit}}</div>
+  </td>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespan.avg | number: '1.0-0' || '\t&#8212;'}} {{experiment.lifespan.unit}}</div>
+    <div class="minus"></div>
+  </td>
+  <td class="table-cell table-cell--center">
+    <div>{{experiment.lifespan.max | number: '1.0-0' || '\t&#8212;'}} {{experiment.lifespan.unit}}</div>
+  </td>
+  <td class="table-cell">
+    {{ experiment.year }}
+  </td>
+
   <td class="table-cell table-cell--row-data">
     <div>
       <a href="#"
@@ -38,13 +60,6 @@
         <mat-icon [inline]="true">download</mat-icon>
       </a>
     </div>
-  </td>
-  <td class="table-cell table-cell--group">
-    <div>Group</div>
-  </td>
-  <td class="table-cell table-cell--nowrap table-cell--temp">
-    <div *ngIf="drug.conditions.temperature?.from !== drug.conditions.temperature?.to"
-    >{{drug.conditions.temperature?.from}} -  {{drug.conditions.temperature?.to}} &#8451;</div>
   </td>
 </tr>
 

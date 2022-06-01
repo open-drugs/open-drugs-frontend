@@ -10,8 +10,12 @@ export interface Filters {
   intervention: Intervention[];
   species: Item[];
   strain: Item[];
+  minLifespanChangePercent: Omit<FilterRange, 'unit'>;
+  medLifespanChangePercent: Omit<FilterRange, 'unit'>;
   avgLifespanChangePercent: Omit<FilterRange, 'unit'>;
   maxLifespanChangePercent: Omit<FilterRange, 'unit'>;
+  minLifespan: FilterRange;
+  medLifespan: FilterRange;
   avgLifespan: FilterRange;
   maxLifespan: FilterRange;
   year: number[];

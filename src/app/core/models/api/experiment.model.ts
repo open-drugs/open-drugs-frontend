@@ -11,10 +11,17 @@ export interface Experiment {
   };
   sex: string;
   lifespan: {
+    min: Float;
     med: Float;
     avg: Float;
     max: Float;
     unit: string;
+  };
+  lifespanChangePercent: {
+    min: Float;
+    med: Float;
+    avg: Float;
+    max: Float;
   };
   doi: string;
   year: number;

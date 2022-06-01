@@ -3,14 +3,13 @@
     <div class="grid-container__sidebar">
       <app-filter-panel
         *ngIf="filtersOptions"
-        [filters]="filtersOptions"
+        [filterOptions]="filtersOptions"
         (filterApplied)="retrieveAndSetParams(getExperimentsData)"
+        class="species__filters"
+        [class.species__filters--sticky]="!isMobile"
       ></app-filter-panel>
     </div>
     <div class="grid-container__content __w-content">
-      <h1 class="species__title">
-        Mus musculus
-      </h1>
       <div class="species__plot">
         <plotly-plot
           [data]="plotData"
@@ -21,11 +20,38 @@
         </plotly-plot>
       </div>
 
-      <app-organism-table
-        [drugsData]="drugsData"
-        [layout]="feedLayout"
-        (checkedIds)="setPlotData($event)">
-      </app-organism-table>
+      <div class="species__feed">
+        <app-organism-table
+          *ngIf="showFeed"
+          [experimentsData]="experimentsList"
+          [layout]="feedLayout"
+          [defaultCheckedIds]="defaultCheckedIds"
+          (checkedIds)="setPlotData($event)">
+        </app-organism-table>
+
+        <div *ngIf="showFeed === false"
+             class="species__error">
+          <ng-container *ngIf="errorMessage.length === 0; else errorTemplate">Nothing found</ng-container>
+          <ng-template #errorTemplate>Error acquired: {{ errorMessage }}</ng-template>
+        </div>
+
+        <mat-error *ngIf="loaderVisible"
+             class="overlay">
+          <mat-spinner class="overlay__spinner"
+                       color="accent"
+                       diameter="40"
+          ></mat-spinner>
+        </mat-error>
+      </div>
+
+      <mat-paginator
+        *ngIf="experimentsList.length !== 0"
+        [length]="experimentsPageOptions.objTotal"
+        [pageSize]="experimentsPageOptions.pagination.pageSize"
+        (page)="pageEventHandler($event)"
+        class="species__paginator"
+        aria-label="Select page">
+      </mat-paginator>
     </div>
   </div>
 </div>

@@ -113,9 +113,11 @@ export class AppSliderComponent implements AfterViewInit, OnDestroy {
       this.buttonOptions);
 
     this.buttonPositionResolver.startValue$
+      .pipe(debounceTime(200))
       .subscribe(value => this.minCurrentValueChange.emit(value));
 
     this.buttonPositionResolver.endValue$
+      .pipe(debounceTime(200))
       .subscribe(value => this.maxCurrentValueChange.emit(value));
   }
 

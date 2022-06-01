@@ -6,9 +6,11 @@
   right: 0;
   left: 0;
   z-index: z(header);
+  box-shadow: $shadow-for-panel;
 }
 
 .header { // mat-toolbar
+  background: $color-white;
   padding: 0 $gutter;
   &, &__content {
     width: 100%;
@@ -21,7 +23,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    color: $color-white;
+    color: $color-primary-500;
 
     .menu {
       width: 60%;

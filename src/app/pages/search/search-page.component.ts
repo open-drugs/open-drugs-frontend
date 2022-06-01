@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../core/services/search.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { FilterParamsModel } from '../../core/models/filter-params.model';
+import { FilterResponseModel } from '../../core/models/filter-response.model';
 import { MockApiService } from '../../core/services/api/mock-api.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { MockApiService } from '../../core/services/api/mock-api.service';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
-  public searchQuery: string = '';
+  public searchQuery = '';
   public searchResults: any[] = []; // TODO: typing
 
   private searchListForFiltering: any[] = []; // TODO: typing
@@ -53,7 +53,7 @@ export class SearchPageComponent implements OnInit {
     this.search($query);
   }
 
-  private updateDrugListByFilterParams(filterParams: FilterParamsModel): void {
+  private updateSearchFeedByFilterParams(filterParams: FilterResponseModel): void {
     const arrayOfValues = Object.values(filterParams).filter(res => res);
 
     if (!arrayOfValues.length) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { Experiment } from '../../../../core/models/api/experiment.model';
 
 @Injectable({
@@ -7,12 +7,12 @@ import { Experiment } from '../../../../core/models/api/experiment.model';
 })
 export class OrganismTableService {
   private checkedIds: number[] = [];
-  private checkedExperimentIds = new BehaviorSubject<number[]>(this.checkedIds);
+  private checkedExperimentIds = new ReplaySubject<number[]>(1);
 
   constructor() { }
 
   getCheckedIds(): Observable<number[]> {
-    return this.checkedExperimentIds.asObservable();
+    return this.checkedExperimentIds;
   }
 
   updateCheckedDrugs(drugs: Experiment[], drugId: number): void {
@@ -22,21 +22,16 @@ export class OrganismTableService {
       this.checkedIds = this.checkedIds.filter((id) => id !== drugId);
     }
 
-    this.updateIds(this.checkedIds);
+    this.setCheckedIds(this.checkedIds);
   }
 
   selectAllDrugs(drugs: Experiment[], selected: boolean): void {
     this.checkedIds = selected ? drugs.map((drug) => drug.id) : [];
-    this.updateIds(this.checkedIds);
+    this.setCheckedIds(this.checkedIds);
   }
 
   setCheckedIds(ids: number[]): void {
     this.checkedIds = ids;
-    this.updateIds(ids);
-  }
-
-  private updateIds(ids: number[]): void {
     this.checkedExperimentIds.next(ids);
   }
-
 }

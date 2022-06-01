@@ -29,7 +29,6 @@ export class HomePageComponent extends WindowWidth implements OnInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    console.log(this.feedData);
     this.getSpecies();
 
     this.initWindowWidth(() => {
@@ -56,7 +55,6 @@ export class HomePageComponent extends WindowWidth implements OnInit, OnDestroy 
         takeUntil(this.unsubscribe$),
       ).subscribe((res) => {
         this.feedData = res;
-        console.log(this.feedData);
         this.pageOptions = res.options; // TODO: пагинация
     });
   }

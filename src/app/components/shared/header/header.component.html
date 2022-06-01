@@ -1,19 +1,19 @@
 <mat-toolbar
-  class="header"
-  color="primary">
+  class="header">
   <div class="header__content">
     <a href="/"
-       class="logo">
-    </a>
+       class="logo"
+       matRipple
+    ></a>
 
-    <ul class="menu" *ngIf="!isMobile">
+    <ul class="menu">
       <li class="menu__item">
         <a routerLink="/">
-          Genomics
+          About
         </a>
       </li>
       <li class="menu__item">
-          <app-language theme="dark"></app-language>
+          <app-language></app-language>
       </li>
     </ul>
   </div>
