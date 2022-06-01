@@ -65,6 +65,8 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     private localStorageService: LocalStorageService,
   ) {
     super(windowWidthService);
+
+    this.storageIds = this.localStorageService.getStorageValue('checkedIds');
   }
 
   ngOnInit(): void {
@@ -163,7 +165,6 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     this.setCheckedExperiments(experimentIds);
 
     if (experimentIds.length) {
-      this.plotDataService.getPlotDataById(experimentIds)
         .pipe()
         .subscribe((data) => {
           this.plotLayout.title = data.options?.chartsCategory;

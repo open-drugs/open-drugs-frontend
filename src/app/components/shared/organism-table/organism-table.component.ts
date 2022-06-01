@@ -8,7 +8,6 @@ import { Experiment } from '../../../core/models/api/experiment.model';
   selector: 'app-organism-table',
   templateUrl: './organism-table.component.html',
   styleUrls: ['./organism-table.component.scss'],
-  providers: [OrganismTableService],
 })
 export class OrganismTableComponent implements OnInit, OnDestroy {
   @Input() experimentsData: Experiment[];
