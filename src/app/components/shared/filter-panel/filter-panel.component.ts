@@ -172,7 +172,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byStrain')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.selectedStrain = this.filterParametersService.decode(res).split(',');
         }
       });
@@ -192,7 +192,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMinLifespan')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.minLifespan.currentMin = res.split(',')[0];
           this.minLifespan.currentMax = res.split(',')[1];
         }
@@ -206,7 +206,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMedLifespan')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.medLifespan.currentMin = res.split(',')[0];
           this.medLifespan.currentMax = res.split(',')[1];
         }
@@ -220,7 +220,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byAvgLifespan')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.avgLifespan.currentMin = res.split(',')[0];
           this.avgLifespan.currentMax = res.split(',')[1];
         }
@@ -234,7 +234,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMaxLifespan')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.maxLifespan.currentMin = res.split(',')[0];
           this.maxLifespan.currentMax = res.split(',')[1];
         }
@@ -248,7 +248,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMinLifespanChangePercent')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.minLifespanChangePercent.currentMin = res.split(',')[0];
           this.minLifespanChangePercent.currentMax = res.split(',')[1];
         }
@@ -262,7 +262,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMedLifespanChangePercent')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.medLifespanChangePercent.currentMin = res.split(',')[0];
           this.medLifespanChangePercent.currentMax = res.split(',')[1];
         }
@@ -276,7 +276,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byAvgLifespanChangePercent')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.avgLifespanChangePercent.currentMin = res.split(',')[0];
           this.avgLifespanChangePercent.currentMax = res.split(',')[1];
         }
@@ -290,7 +290,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
     this.filterParametersService.retrieveQueryParamFromUrl('byMaxLifespanChangePercent')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (typeof res !== undefined) {
+        if (typeof res !== undefined && res?.length > 0) {
           this.maxLifespanChangePercent.currentMin = res.split(',')[0];
           this.maxLifespanChangePercent.currentMax = res.split(',')[1];
         }
@@ -412,9 +412,8 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
       .retrieveQueryParamFromUrl('byIntervention')
       .pipe(takeUntil(this.subscription$))
       .subscribe((res) => {
-        if (res) {
-          // @ts-ignore
-          const indexes = res.split(',').map((i) => Number(i));
+        if (res && res?.length > 0) {
+          const indexes = res.split(',').map((i: string) => Number(i));
           const matchingInterventions = this.interventions.filter((item: any) => indexes.includes(item.id));
           this.selectedInterventions = matchingInterventions.map((item: any) => item.id);
         }

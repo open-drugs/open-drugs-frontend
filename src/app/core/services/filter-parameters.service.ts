@@ -77,6 +77,17 @@ export class FilterParametersService {
 
     const filterParams = this.removeEmptyFields(this.appliedFiltersState);
 
+    // Handle ranges:
+    // Angular Router merges parameters but in its own way.
+    // If the field holds an array, it's setting individual parameters into URL (i. e. byMaxLifespan=2,byMaxLifespan=80)
+    // To get this result `byMaxLifespan=2,80`, we transform an array into a string.
+    for (const p in filterParams) {
+      if (Array.isArray(filterParams[p])) {
+        console.log('item', filterParams[p].toString());
+        filterParams[p] = filterParams[p].toString();
+      }
+    }
+
     this.router.navigate(
       [urlWithoutParams],
       {
