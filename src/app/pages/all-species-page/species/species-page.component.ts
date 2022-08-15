@@ -85,7 +85,7 @@ export class SpeciesPageComponent extends WindowWidth implements OnInit, OnDestr
     });
   }
 
-  // tslint:disable-next-line:ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   public retrieveAndSetParams(next?: Function): void {
     this.filterParametersService.getFiltersState()
       .pipe(

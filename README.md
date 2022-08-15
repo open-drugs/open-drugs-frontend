@@ -46,6 +46,14 @@ JIT compilation for developers test environment: `npm run start-test`
 
 ---
 
+### Linting
+
+```
+ng lint
+```
+
+---
+
 ## Build for different environments
 
 - Developers test environment AOT build: `npm run build-test`

@@ -308,7 +308,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
   public compareSelectValues(value1: any | any[], value2: any): boolean {
     if (value1 && value2) {
       // comparison should not be strict
-      // tslint:disable-next-line:triple-equals
+      // eslint-disable-next-line eqeqeq
       return value1 == value2;
     }
     return false;
@@ -335,7 +335,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
    * Reset filter values
    */
 
-  // tslint:disable-next-line:ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   reset(key: FilterQueryParams, controlToReset: any, resetValue: any, $event: any, callback?: Function): void {
     const value = '';
     this.filterParametersService.applyQueryParams(key, value, '');
@@ -362,7 +362,7 @@ export class FilterPanelComponent implements OnChanges, OnDestroy {
    * Apply filter values
    */
 
-  // tslint:disable-next-line:ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   apply(key: FilterQueryParams, $event: MatSelectChange, callback?: Function): void {
     let value = $event.value;
     if (Array.isArray($event.value)) {
