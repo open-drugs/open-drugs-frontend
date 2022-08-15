@@ -11,7 +11,7 @@ export const environment = {
     speciesList: '../assets/mocks/species-list-mock.json',
     plotData: '../assets/mocks/plot-data-mock.json'
   },
-  languages: ['ru', 'en', 'zh'],
+  languages: ['ru', 'en'],
 };
 
 /*

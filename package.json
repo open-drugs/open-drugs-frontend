@@ -4,11 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-dev": "ng serve --configuration=test",
-    "start-demo": "ng serve --configuration=demo",
+    "start-test": "ng serve --configuration=test",
     "build": "ng build",
-    "build-dev": "ng build --configuration=test",
-    "build-demo": "ng build --configuration=demo",
+    "build-test": "ng build --configuration=test",
     "build-prod": "ng build --prod",
     "fb-deploy": "npm run build-prod && firebase deploy",
     "test": "ng test",
